@@ -8,22 +8,44 @@
 
 /* Begin PBXBuildFile section */
 		7CA26C892410E673001D3237 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA26C882410E673001D3237 /* AppDelegate.swift */; };
-		7CA26C8B2410E673001D3237 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA26C8A2410E673001D3237 /* SceneDelegate.swift */; };
-		7CA26C8D2410E673001D3237 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA26C8C2410E673001D3237 /* ViewController.swift */; };
 		7CA26C902410E673001D3237 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CA26C8E2410E673001D3237 /* Main.storyboard */; };
 		7CA26C922410E675001D3237 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7CA26C912410E675001D3237 /* Assets.xcassets */; };
 		7CA26C952410E675001D3237 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CA26C932410E675001D3237 /* LaunchScreen.storyboard */; };
+		7CA26CA62410E9B3001D3237 /* MainPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA26CA12410E9B3001D3237 /* MainPresenter.swift */; };
+		7CA26CA72410E9B3001D3237 /* MainRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA26CA22410E9B3001D3237 /* MainRouter.swift */; };
+		7CA26CA82410E9B3001D3237 /* MainModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA26CA32410E9B3001D3237 /* MainModels.swift */; };
+		7CA26CA92410E9B3001D3237 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA26CA42410E9B3001D3237 /* MainViewController.swift */; };
+		7CA26CAA2410E9B3001D3237 /* MainInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA26CA52410E9B3001D3237 /* MainInteractor.swift */; };
+		7CDF835A24124E8F00301746 /* MapPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDF835524124E8F00301746 /* MapPresenter.swift */; };
+		7CDF835B24124E8F00301746 /* MapRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDF835624124E8F00301746 /* MapRouter.swift */; };
+		7CDF835C24124E8F00301746 /* MapModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDF835724124E8F00301746 /* MapModels.swift */; };
+		7CDF835D24124E8F00301746 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDF835824124E8F00301746 /* MapViewController.swift */; };
+		7CDF835E24124E8F00301746 /* MapInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDF835924124E8F00301746 /* MapInteractor.swift */; };
+		7CDF83602412502D00301746 /* PermissionWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDF835F2412502D00301746 /* PermissionWorker.swift */; };
+		7CDF83642412823800301746 /* AppModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDF83632412823800301746 /* AppModels.swift */; };
+		7CDF83662412854800301746 /* CustomCalloutViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDF83652412854800301746 /* CustomCalloutViews.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		7CA26C852410E673001D3237 /* RSR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CA26C882410E673001D3237 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		7CA26C8A2410E673001D3237 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		7CA26C8C2410E673001D3237 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7CA26C8F2410E673001D3237 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7CA26C912410E675001D3237 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7CA26C942410E675001D3237 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7CA26C962410E675001D3237 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7CA26CA12410E9B3001D3237 /* MainPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPresenter.swift; sourceTree = "<group>"; };
+		7CA26CA22410E9B3001D3237 /* MainRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainRouter.swift; sourceTree = "<group>"; };
+		7CA26CA32410E9B3001D3237 /* MainModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainModels.swift; sourceTree = "<group>"; };
+		7CA26CA42410E9B3001D3237 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		7CA26CA52410E9B3001D3237 /* MainInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainInteractor.swift; sourceTree = "<group>"; };
+		7CDF835524124E8F00301746 /* MapPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapPresenter.swift; sourceTree = "<group>"; };
+		7CDF835624124E8F00301746 /* MapRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapRouter.swift; sourceTree = "<group>"; };
+		7CDF835724124E8F00301746 /* MapModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModels.swift; sourceTree = "<group>"; };
+		7CDF835824124E8F00301746 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
+		7CDF835924124E8F00301746 /* MapInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapInteractor.swift; sourceTree = "<group>"; };
+		7CDF835F2412502D00301746 /* PermissionWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionWorker.swift; sourceTree = "<group>"; };
+		7CDF83632412823800301746 /* AppModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModels.swift; sourceTree = "<group>"; };
+		7CDF83652412854800301746 /* CustomCalloutViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalloutViews.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +78,66 @@
 		7CA26C872410E673001D3237 /* RSR */ = {
 			isa = PBXGroup;
 			children = (
-				7CA26C8A2410E673001D3237 /* SceneDelegate.swift */,
-				7CA26C8C2410E673001D3237 /* ViewController.swift */,
+				7CA26C9D2410E95B001D3237 /* Workers */,
+				7CA26C9C2410E950001D3237 /* Scenes */,
 				7CA26C8E2410E673001D3237 /* Main.storyboard */,
 				7CA26C882410E673001D3237 /* AppDelegate.swift */,
+				7CDF83632412823800301746 /* AppModels.swift */,
 				7CA26C912410E675001D3237 /* Assets.xcassets */,
 				7CA26C932410E675001D3237 /* LaunchScreen.storyboard */,
 				7CA26C962410E675001D3237 /* Info.plist */,
 			);
 			path = RSR;
+			sourceTree = "<group>";
+		};
+		7CA26C9C2410E950001D3237 /* Scenes */ = {
+			isa = PBXGroup;
+			children = (
+				7CA26C9E2410E96E001D3237 /* Main */,
+				7CA26C9F2410E976001D3237 /* Map */,
+				7CA26CA02410E97D001D3237 /* About */,
+			);
+			path = Scenes;
+			sourceTree = "<group>";
+		};
+		7CA26C9D2410E95B001D3237 /* Workers */ = {
+			isa = PBXGroup;
+			children = (
+				7CDF835F2412502D00301746 /* PermissionWorker.swift */,
+			);
+			path = Workers;
+			sourceTree = "<group>";
+		};
+		7CA26C9E2410E96E001D3237 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				7CA26CA42410E9B3001D3237 /* MainViewController.swift */,
+				7CA26CA52410E9B3001D3237 /* MainInteractor.swift */,
+				7CA26CA12410E9B3001D3237 /* MainPresenter.swift */,
+				7CA26CA32410E9B3001D3237 /* MainModels.swift */,
+				7CA26CA22410E9B3001D3237 /* MainRouter.swift */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		7CA26C9F2410E976001D3237 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				7CDF83652412854800301746 /* CustomCalloutViews.swift */,
+				7CDF835824124E8F00301746 /* MapViewController.swift */,
+				7CDF835924124E8F00301746 /* MapInteractor.swift */,
+				7CDF835524124E8F00301746 /* MapPresenter.swift */,
+				7CDF835724124E8F00301746 /* MapModels.swift */,
+				7CDF835624124E8F00301746 /* MapRouter.swift */,
+			);
+			path = Map;
+			sourceTree = "<group>";
+		};
+		7CA26CA02410E97D001D3237 /* About */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = About;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -138,9 +211,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7CA26C8D2410E673001D3237 /* ViewController.swift in Sources */,
+				7CDF83602412502D00301746 /* PermissionWorker.swift in Sources */,
 				7CA26C892410E673001D3237 /* AppDelegate.swift in Sources */,
-				7CA26C8B2410E673001D3237 /* SceneDelegate.swift in Sources */,
+				7CDF835B24124E8F00301746 /* MapRouter.swift in Sources */,
+				7CDF835A24124E8F00301746 /* MapPresenter.swift in Sources */,
+				7CDF83662412854800301746 /* CustomCalloutViews.swift in Sources */,
+				7CDF835D24124E8F00301746 /* MapViewController.swift in Sources */,
+				7CDF83642412823800301746 /* AppModels.swift in Sources */,
+				7CA26CA72410E9B3001D3237 /* MainRouter.swift in Sources */,
+				7CA26CA82410E9B3001D3237 /* MainModels.swift in Sources */,
+				7CDF835E24124E8F00301746 /* MapInteractor.swift in Sources */,
+				7CDF835C24124E8F00301746 /* MapModels.swift in Sources */,
+				7CA26CA92410E9B3001D3237 /* MainViewController.swift in Sources */,
+				7CA26CA62410E9B3001D3237 /* MainPresenter.swift in Sources */,
+				7CA26CAA2410E9B3001D3237 /* MainInteractor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -287,7 +371,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ATB37JP4VX;
 				INFOPLIST_FILE = RSR/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -306,7 +390,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = ATB37JP4VX;
 				INFOPLIST_FILE = RSR/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
