@@ -23,10 +23,16 @@ class MainViewController: UIViewController, MainDisplayable {
 //    lazy var router: MainRoutable
 //    var viewModel: MainModels.ViewModel?
     
+    @IBOutlet weak var button: UIButton!
+    
+    
     // MARK: View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        button.layer.cornerRadius = 10
+        
+        
         //doSomething()
     }
     

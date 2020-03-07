@@ -25,6 +25,13 @@ class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
     private lazy var router = MapRouter(viewController: self)
     
     @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet weak var ringButton: UIButton!
+    @IBOutlet weak var middleBoxView: UIView!
+    
+    @IBOutlet weak var cancelButton: UIButton!
+    
+    
+    
     var pin: CustomAnnotation!
     
     var calloutElements = CustomCalloutViews()
@@ -34,11 +41,34 @@ class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        ringButton.layer.cornerRadius = 10
+        
         mapView.delegate = self
         
         askPermission()
         locateUser()
     }
+    
+    
+    @IBAction func ringButtonAction(_ sender: UIButton) {
+        print("button is tapped")
+        hideElements()
+    }
+    
+    @IBAction func cancelButtonAction(_ sender: UIButton) {
+        
+    }
+    
+    private func hideElements() {
+        calloutElements.calloutView.isHidden = true
+        ringButton.isHidden = true
+    }
+    
+    private func showElements() {
+        calloutElements.calloutView.isHidden = false
+        ringButton.isHidden = false
+    }
+    
     
     
     func displayCustomPin(viewModel: MapModels.LocateTheUser.ViewModel) {
