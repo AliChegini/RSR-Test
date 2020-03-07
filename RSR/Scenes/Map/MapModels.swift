@@ -15,7 +15,7 @@ import UIKit
 import CoreLocation
 
 enum MapModels {
-    
+    // AskForPermission use case
     enum AskForPermission {
         struct Request {
             
@@ -30,7 +30,7 @@ enum MapModels {
         }
     }
     
-    
+    // LocateTheUser use case
     enum LocateTheUser {
         struct Request {
             

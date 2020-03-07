@@ -14,16 +14,18 @@
 import UIKit
 
 protocol MainDisplayable: class {
-//    func displaySomething(viewModel: MainModels.ViewModel)
-    // func to display error can be added here
+    func displayPrivacyAlert(viewModel: MainModels.AskForUserConsent.ViewModel)
+    func displayElementsForDeviceType(viewModel: MainModels.ShowElementsForDevice.ViewModel)
 }
 
 class MainViewController: UIViewController, MainDisplayable {
-//    lazy var interactor: MainBusinessLogic
-//    lazy var router: MainRoutable
-//    var viewModel: MainModels.ViewModel?
-    
+    lazy var interactor: MainBusinessLogic = MainInteractor(presenter: MainPresenter(viewController: self))
+    lazy var router = MainRouter(viewController: self)
+
     @IBOutlet weak var button: UIButton!
+    
+    // defaults to save user consent on privacy policy
+    let defaults = UserDefaults.standard
     
     
     // MARK: View lifecycle
@@ -32,11 +34,60 @@ class MainViewController: UIViewController, MainDisplayable {
         super.viewDidLoad()
         button.layer.cornerRadius = 10
         
-        
-        //doSomething()
+        checkDeviceType()
+        checkUserConsent()
     }
     
-    // MARK: Do something
+    
+    func displayPrivacyAlert(viewModel: MainModels.AskForUserConsent.ViewModel) {
+        createAndShowAlert()
+    }
+    
+    func displayElementsForDeviceType(viewModel: MainModels.ShowElementsForDevice.ViewModel) {
+        // hide the navigation bar button
+        navigationItem.rightBarButtonItem = nil
+        
+        // TODO: Continue by adding the about button for ipad
+    }
+    
+    
+    fileprivate func checkDeviceType() {
+        let request = MainModels.ShowElementsForDevice.Request()
+        interactor.checkDeviceType(request: request)
+    }
+    
+    fileprivate func checkUserConsent() {
+        let request = MainModels.AskForUserConsent.Request()
+        interactor.checkUserConsent(request: request)
+    }
+    
+    
+    @IBAction func policyButtonAction(_ sender: UIBarButtonItem) {
+        createAndShowAlert()
+    }
+    
+    
+    fileprivate func createAndShowAlert() {
+        let alert = UIAlertController(title: nil, message: "Om gebruik te maken van deze app dient u het privacybeleid te accepteren", preferredStyle: .alert)
+        
+        alert.addAction(UIAlertAction(title: "Accepteren", style: .default, handler: { (action) in
+            // save in user defaults
+            self.defaults.set(true, forKey: "PrivacyConsent")
+        }))
+        
+        alert.addAction(UIAlertAction(title: "Ga naar privacybeleid", style: .default, handler: { (action) in
+            // open link in browser
+            if let url = URL(string: "https://www.rsr.nl/index.php?page=privacy-wetgeving") {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
+    }
+    
+    
+    
+    // MARK: Boiler plate code
     
 //    func doSomething() {
 //        let request = Main.Something.Request()

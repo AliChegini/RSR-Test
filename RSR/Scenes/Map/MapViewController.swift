@@ -16,8 +16,6 @@ import MapKit
 
 protocol MapDisplayable: class {
     func displayCustomPin(viewModel: MapModels.LocateTheUser.ViewModel)
-//    func displaySomething(viewModel: MapModels.ViewModel)
-    // func to display error can be added here
 }
 
 class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
@@ -25,11 +23,17 @@ class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
     private lazy var router = MapRouter(viewController: self)
     
     @IBOutlet weak var mapView: MKMapView!
+    // ring button at the bottom of scene
     @IBOutlet weak var ringButton: UIButton!
-    @IBOutlet weak var middleBoxView: UIView!
     
+    // cancel button at the top left corner of middle box
     @IBOutlet weak var cancelButton: UIButton!
     
+    // middle yellow box containing labels and button
+    @IBOutlet weak var middleBoxView: UIView!
+    
+    // ring button inside the middle box
+    @IBOutlet weak var finalRingButton: UIButton!
     
     
     var pin: CustomAnnotation!
@@ -41,34 +45,22 @@ class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        ringButton.layer.cornerRadius = 10
-        
+        roundTheButtons()
         mapView.delegate = self
-        
         askPermission()
         locateUser()
     }
     
     
-    @IBAction func ringButtonAction(_ sender: UIButton) {
-        print("button is tapped")
-        hideElements()
+    fileprivate func askPermission() {
+        let request = MapModels.AskForPermission.Request()
+        interactor.askPermission(request: request)
     }
     
-    @IBAction func cancelButtonAction(_ sender: UIButton) {
-        
+    fileprivate func locateUser() {
+        let request = MapModels.LocateTheUser.Request()
+        interactor.locateUser(request: request)
     }
-    
-    private func hideElements() {
-        calloutElements.calloutView.isHidden = true
-        ringButton.isHidden = true
-    }
-    
-    private func showElements() {
-        calloutElements.calloutView.isHidden = false
-        ringButton.isHidden = false
-    }
-    
     
     
     func displayCustomPin(viewModel: MapModels.LocateTheUser.ViewModel) {
@@ -85,17 +77,64 @@ class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
     }
     
     
-    private func askPermission() {
-        let request = MapModels.AskForPermission.Request()
-        interactor.askPermission(request: request)
+    @IBAction func ringButtonAction(_ sender: UIButton) {
+        hideCalloutAndRingButton()
+        showMiddleBoxAndCancelButton()
+    }
+        
+    @IBAction func cancelButtonAction(_ sender: UIButton) {
+        showCalloutAndRingButton()
+        hideMiddleBoxAndCancelButton()
+    }
+    
+    @IBAction func finalRingButtonAction(_ sender: UIButton) {
+        let number = "+319007788990"
+        if let url = URL(string: "tel://\(number)"), UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url)
+        }
     }
     
     
-    private func locateUser() {
-        let request = MapModels.LocateTheUser.Request()
-        interactor.locateUser(request: request)
+    // hide callout and button at the bottom of the page
+    fileprivate func hideCalloutAndRingButton() {
+        calloutElements.calloutView.isHidden = true
+        ringButton.isHidden = true
     }
     
+    // hide middle box and cancel button
+    fileprivate func hideMiddleBoxAndCancelButton() {
+        middleBoxView.isHidden = true
+        cancelButton.isHidden = true
+    }
+    
+    // show callout and button at the bottom of the page
+    fileprivate func showCalloutAndRingButton() {
+        UIView.transition(with: calloutElements.calloutView,
+                          duration: 0.4,
+                          options: .transitionCrossDissolve,
+                          animations: {
+            self.calloutElements.calloutView.isHidden = false
+            self.ringButton.isHidden = false
+        })
+    }
+    
+    // show middle box and cancel button
+    fileprivate func showMiddleBoxAndCancelButton() {
+        UIView.transition(with: middleBoxView,
+                          duration: 0.4,
+                          options: .transitionCrossDissolve,
+                          animations: {
+            self.middleBoxView.isHidden = false
+            self.cancelButton.isHidden = false
+        })
+    }
+    
+
+    // functionn to cut buttons corners
+    fileprivate func roundTheButtons() {
+        ringButton.layer.cornerRadius = 10
+        finalRingButton.layer.cornerRadius = 10
+    }
     
     
     // methods for Custom annotations
@@ -108,9 +147,7 @@ class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
         return annotationView
     }
     
-    
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         calloutElements.setupViews(view: view)
     }
-
 }

@@ -14,7 +14,8 @@
 import UIKit
 
 protocol MainBusinessLogic {
-//    func doSomething(request: Main.Something.Request)
+    func checkUserConsent(request: MainModels.AskForUserConsent.Request)
+    func checkDeviceType(request: MainModels.ShowElementsForDevice.Request)
 }
 
 protocol MainDataStore {
@@ -22,16 +23,37 @@ protocol MainDataStore {
 }
 
 class MainInteractor: MainBusinessLogic, MainDataStore {
-  var presenter: MainPresentable?
-  //var worker: MainWorker?
-  //var name: String = ""
+    var presenter: MainPresentable?
+    
+    // reference to defaults to save user consent on privacy policy
+    let defaults = UserDefaults.standard
   
     init(presenter: MainPresentable) {
         self.presenter = presenter
     }
     
     
-  // MARK: Do something
+    func checkUserConsent(request: MainModels.AskForUserConsent.Request) {
+        // check user defaults for privacy consent
+        if !defaults.bool(forKey: "PrivacyConsent") {
+            let response = MainModels.AskForUserConsent.Response()
+            presenter?.presentPrivacyAlert(response: response)
+        }
+    }
+    
+    
+    func checkDeviceType(request: MainModels.ShowElementsForDevice.Request) {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            let response = MainModels.ShowElementsForDevice.Response.init(deviceType: .phone)
+            presenter?.presentElementsForDeviceType(response: response)
+        } else if UIDevice.current.userInterfaceIdiom == .pad {
+            let response = MainModels.ShowElementsForDevice.Response.init(deviceType: .pad)
+            presenter?.presentElementsForDeviceType(response: response)
+        }
+    }
+    
+    
+  // MARK: Boiler plate code
   
 //    func doSomething(request: MainModels.Request) {
 //        worker = MainWorker()

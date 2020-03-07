@@ -15,15 +15,33 @@ import UIKit
 
 enum MainModels {
     
-    struct Request {
+    enum AskForUserConsent {
+        struct Request {
+            
+        }
         
+        struct Response {
+            
+        }
+        
+        struct ViewModel {
+            
+        }
     }
     
-    struct Response {
+    
+    enum ShowElementsForDevice {
+        struct Request {
+            
+        }
         
+        struct Response {
+            let deviceType: DeviceType
+        }
+        
+        struct ViewModel {
+            let deviceType: DeviceType
+        }
     }
     
-    struct ViewModel {
-        
-    }
 }

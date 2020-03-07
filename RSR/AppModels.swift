@@ -36,3 +36,8 @@ enum RSRErrors: Error {
     case disallowedByUser
 }
 
+
+enum DeviceType {
+    case phone
+    case pad
+}
