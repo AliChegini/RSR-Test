@@ -17,6 +17,7 @@ import CoreLocation
 protocol MapBusinessLogic {
     func askPermission(request: MapModels.AskForPermission.Request)
     func locateUser(request: MapModels.LocateTheUser.Request)
+    func checkDeviceType(request: MapModels.ShowElementsForDevice.Request)
 }
 
 protocol MapDataStore {
@@ -51,6 +52,17 @@ class MapInteractor: NSObject, MapBusinessLogic, MapDataStore {
     func locateUser(request: MapModels.LocateTheUser.Request) {
         locationManager.requestLocation()
     }
+    
+    func checkDeviceType(request: MapModels.ShowElementsForDevice.Request) {
+        if UIDevice.current.userInterfaceIdiom == .phone {
+            let response = MapModels.ShowElementsForDevice.Response.init(deviceType: .phone)
+            presenter?.presentElementsForDeviceType(response: response)
+        } else if UIDevice.current.userInterfaceIdiom == .pad {
+            let response = MapModels.ShowElementsForDevice.Response.init(deviceType: .pad)
+            presenter?.presentElementsForDeviceType(response: response)
+        }
+    }
+    
 }
 
 

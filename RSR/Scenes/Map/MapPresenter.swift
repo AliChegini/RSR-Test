@@ -15,6 +15,7 @@ import UIKit
 
 protocol MapPresentable {
     func presentAddress(response: MapModels.LocateTheUser.Response)
+    func presentElementsForDeviceType(response: MapModels.ShowElementsForDevice.Response)
 }
 
 class MapPresenter: MapPresentable {
@@ -28,6 +29,11 @@ class MapPresenter: MapPresentable {
     func presentAddress(response: MapModels.LocateTheUser.Response) {
         let viewModel = MapModels.LocateTheUser.ViewModel(stringLocation: response.stringLocation, coordinate: response.coordinate)
         viewController?.displayCustomPin(viewModel: viewModel)
+    }
+    
+    func presentElementsForDeviceType(response: MapModels.ShowElementsForDevice.Response) {
+        let viewModel = MapModels.ShowElementsForDevice.ViewModel(deviceType: response.deviceType)
+        viewController?.displayElementsForDeviceType(viewModel: viewModel)
     }
     
 }

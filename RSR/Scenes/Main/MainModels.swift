@@ -29,7 +29,7 @@ enum MainModels {
         }
     }
     
-    
+    // use case to show the proper UI elements basedon device type
     enum ShowElementsForDevice {
         struct Request {
             

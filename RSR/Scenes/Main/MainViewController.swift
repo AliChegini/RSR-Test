@@ -22,7 +22,8 @@ class MainViewController: UIViewController, MainDisplayable {
     lazy var interactor: MainBusinessLogic = MainInteractor(presenter: MainPresenter(viewController: self))
     lazy var router = MainRouter(viewController: self)
 
-    @IBOutlet weak var button: UIButton!
+    @IBOutlet weak var showMapButton: UIButton!
+    @IBOutlet weak var iPadPrivacyButton: UIButton!
     
     // defaults to save user consent on privacy policy
     let defaults = UserDefaults.standard
@@ -32,7 +33,7 @@ class MainViewController: UIViewController, MainDisplayable {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        button.layer.cornerRadius = 10
+        roundTheButtons()
         
         checkDeviceType()
         checkUserConsent()
@@ -43,11 +44,13 @@ class MainViewController: UIViewController, MainDisplayable {
         createAndShowAlert()
     }
     
+    
     func displayElementsForDeviceType(viewModel: MainModels.ShowElementsForDevice.ViewModel) {
-        // hide the navigation bar button
-        navigationItem.rightBarButtonItem = nil
-        
-        // TODO: Continue by adding the about button for ipad
+        if viewModel.deviceType == .pad {
+            // hide the navigation bar button and show the ipad button
+            navigationItem.rightBarButtonItem = nil
+            iPadPrivacyButton.isHidden = false
+        }
     }
     
     
@@ -66,6 +69,16 @@ class MainViewController: UIViewController, MainDisplayable {
         createAndShowAlert()
     }
     
+    @IBAction func iPadPrivacyButtonAction(_ sender: UIButton) {
+        createAndShowAlert()
+    }
+    
+    
+    
+    fileprivate func roundTheButtons() {
+        showMapButton.layer.cornerRadius = 10
+        iPadPrivacyButton.layer.cornerRadius = 10
+    }
     
     fileprivate func createAndShowAlert() {
         let alert = UIAlertController(title: nil, message: "Om gebruik te maken van deze app dient u het privacybeleid te accepteren", preferredStyle: .alert)

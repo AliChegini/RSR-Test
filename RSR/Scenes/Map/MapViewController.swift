@@ -16,6 +16,7 @@ import MapKit
 
 protocol MapDisplayable: class {
     func displayCustomPin(viewModel: MapModels.LocateTheUser.ViewModel)
+    func displayElementsForDeviceType(viewModel: MapModels.ShowElementsForDevice.ViewModel)
 }
 
 class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
@@ -49,6 +50,7 @@ class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
         mapView.delegate = self
         askPermission()
         locateUser()
+        checkDeviceType()
     }
     
     
@@ -60,6 +62,11 @@ class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
     fileprivate func locateUser() {
         let request = MapModels.LocateTheUser.Request()
         interactor.locateUser(request: request)
+    }
+    
+    fileprivate func checkDeviceType() {
+        let request = MapModels.ShowElementsForDevice.Request()
+        interactor.checkDeviceType(request: request)
     }
     
     
@@ -75,6 +82,14 @@ class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
         
         mapView.selectAnnotation(pin, animated: true)
     }
+    
+    
+    func displayElementsForDeviceType(viewModel: MapModels.ShowElementsForDevice.ViewModel) {
+        if viewModel.deviceType == .pad {
+            ringButton.isHidden = true
+        }
+    }
+    
     
     
     @IBAction func ringButtonAction(_ sender: UIButton) {

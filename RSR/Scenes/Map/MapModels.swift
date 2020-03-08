@@ -47,4 +47,21 @@ enum MapModels {
         }
     }
     
+    // use case to show the proper UI elements basedon device type
+    enum ShowElementsForDevice {
+        struct Request {
+            
+        }
+        
+        struct Response {
+            let deviceType: DeviceType
+        }
+        
+        struct ViewModel {
+            let deviceType: DeviceType
+        }
+    }
+    
+    
+    
 }
