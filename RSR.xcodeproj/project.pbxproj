@@ -21,7 +21,6 @@
 		7CDF835C24124E8F00301746 /* MapModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDF835724124E8F00301746 /* MapModels.swift */; };
 		7CDF835D24124E8F00301746 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDF835824124E8F00301746 /* MapViewController.swift */; };
 		7CDF835E24124E8F00301746 /* MapInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDF835924124E8F00301746 /* MapInteractor.swift */; };
-		7CDF83602412502D00301746 /* PermissionWorker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDF835F2412502D00301746 /* PermissionWorker.swift */; };
 		7CDF83642412823800301746 /* AppModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDF83632412823800301746 /* AppModels.swift */; };
 		7CDF83662412854800301746 /* CustomCalloutViews.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDF83652412854800301746 /* CustomCalloutViews.swift */; };
 /* End PBXBuildFile section */
@@ -43,7 +42,6 @@
 		7CDF835724124E8F00301746 /* MapModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapModels.swift; sourceTree = "<group>"; };
 		7CDF835824124E8F00301746 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		7CDF835924124E8F00301746 /* MapInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapInteractor.swift; sourceTree = "<group>"; };
-		7CDF835F2412502D00301746 /* PermissionWorker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PermissionWorker.swift; sourceTree = "<group>"; };
 		7CDF83632412823800301746 /* AppModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModels.swift; sourceTree = "<group>"; };
 		7CDF83652412854800301746 /* CustomCalloutViews.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCalloutViews.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -78,7 +76,6 @@
 		7CA26C872410E673001D3237 /* RSR */ = {
 			isa = PBXGroup;
 			children = (
-				7CA26C9D2410E95B001D3237 /* Workers */,
 				7CA26C9C2410E950001D3237 /* Scenes */,
 				7CA26C8E2410E673001D3237 /* Main.storyboard */,
 				7CA26C882410E673001D3237 /* AppDelegate.swift */,
@@ -98,14 +95,6 @@
 				7CA26CA02410E97D001D3237 /* About */,
 			);
 			path = Scenes;
-			sourceTree = "<group>";
-		};
-		7CA26C9D2410E95B001D3237 /* Workers */ = {
-			isa = PBXGroup;
-			children = (
-				7CDF835F2412502D00301746 /* PermissionWorker.swift */,
-			);
-			path = Workers;
 			sourceTree = "<group>";
 		};
 		7CA26C9E2410E96E001D3237 /* Main */ = {
@@ -211,7 +200,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7CDF83602412502D00301746 /* PermissionWorker.swift in Sources */,
 				7CA26C892410E673001D3237 /* AppDelegate.swift in Sources */,
 				7CDF835B24124E8F00301746 /* MapRouter.swift in Sources */,
 				7CDF835A24124E8F00301746 /* MapPresenter.swift in Sources */,

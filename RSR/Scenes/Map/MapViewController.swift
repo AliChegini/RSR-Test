@@ -17,6 +17,7 @@ import MapKit
 protocol MapDisplayable: class {
     func displayCustomPin(viewModel: MapModels.LocateTheUser.ViewModel)
     func displayElementsForDeviceType(viewModel: MapModels.ShowElementsForDevice.ViewModel)
+    func displayPermissionAlert(viewModel: MapModels.AskForPermission.ViewModel)
 }
 
 class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
@@ -24,6 +25,7 @@ class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
     private lazy var router = MapRouter(viewController: self)
     
     @IBOutlet weak var mapView: MKMapView!
+    
     // ring button at the bottom of scene
     @IBOutlet weak var ringButton: UIButton!
     
@@ -33,12 +35,15 @@ class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
     // middle yellow box containing labels and button
     @IBOutlet weak var middleBoxView: UIView!
     
+    // footerbox for ipad at the bottomof the scene
+    @IBOutlet weak var iPadFooterBoxView: UIView!
+    
     // ring button inside the middle box
     @IBOutlet weak var finalRingButton: UIButton!
     
-    
     var pin: CustomAnnotation!
     
+    // callout elements including labels 
     var calloutElements = CustomCalloutViews()
     
     // MARK: View lifecycle
@@ -87,9 +92,14 @@ class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
     func displayElementsForDeviceType(viewModel: MapModels.ShowElementsForDevice.ViewModel) {
         if viewModel.deviceType == .pad {
             ringButton.isHidden = true
+            iPadFooterBoxView.isHidden = false
         }
     }
     
+    
+    func displayPermissionAlert(viewModel: MapModels.AskForPermission.ViewModel) {
+        createAndShowPermissionAlert()
+    }
     
     
     @IBAction func ringButtonAction(_ sender: UIButton) {
@@ -108,6 +118,15 @@ class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
             UIApplication.shared.open(url)
         }
     }
+    
+    
+    @IBAction func iPadRingButtonAction(_ sender: UIButton) {
+        let number = "+319007788990"
+        if let url = URL(string: "tel://\(number)"), UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url)
+        }
+    }
+    
     
     
     // hide callout and button at the bottom of the page
@@ -129,29 +148,33 @@ class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
                           options: .transitionCrossDissolve,
                           animations: {
             self.calloutElements.calloutView.isHidden = false
+        })
+        UIView.transition(with: ringButton,
+                          duration: 0.4,
+                          options: .transitionCrossDissolve,
+                          animations: {
             self.ringButton.isHidden = false
         })
     }
     
-    // show middle box and cancel button
+    
+    // function to show middle box and cancel button
     fileprivate func showMiddleBoxAndCancelButton() {
         UIView.transition(with: middleBoxView,
                           duration: 0.4,
                           options: .transitionCrossDissolve,
                           animations: {
             self.middleBoxView.isHidden = false
+        })
+        UIView.transition(with: cancelButton,
+                          duration: 0.4,
+                          options: .transitionCrossDissolve,
+                          animations: {
             self.cancelButton.isHidden = false
         })
     }
     
 
-    // functionn to cut buttons corners
-    fileprivate func roundTheButtons() {
-        ringButton.layer.cornerRadius = 10
-        finalRingButton.layer.cornerRadius = 10
-    }
-    
-    
     // methods for Custom annotations
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -164,5 +187,32 @@ class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         calloutElements.setupViews(view: view)
+    }
+}
+
+
+
+extension MapViewController {
+    
+    // functionn to cut buttons corners
+    fileprivate func roundTheButtons() {
+        ringButton.layer.cornerRadius = 10
+        finalRingButton.layer.cornerRadius = 10
+    }
+    
+    
+    // alert the user in case of denied permission
+    func createAndShowPermissionAlert() {
+        let alert = UIAlertController(title: "Location Permission", message: "Please authorize RSR to find your location while using the app.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+            
+            if let url = URL(string: UIApplication.openSettingsURLString) {
+                // open the app permission in Settings app
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            }
+        }))
+        
+        self.present(alert, animated: true, completion: nil)
     }
 }

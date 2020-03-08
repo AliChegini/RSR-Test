@@ -19,7 +19,6 @@ protocol MainRoutable {
 
 
 class MainRouter: MainRoutable {
-    
     weak var viewController: UIViewController?
     
     init(viewController: UIViewController) {

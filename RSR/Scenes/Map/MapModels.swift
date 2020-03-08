@@ -62,6 +62,4 @@ enum MapModels {
         }
     }
     
-    
-    
 }

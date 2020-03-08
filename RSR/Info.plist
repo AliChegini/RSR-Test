@@ -42,6 +42,6 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Please authorize RSR to find your location while using the app.</string>
+	<string>RSR heeft uw locatie nodig om uw adres te vinden, zodat u dit door kan geven tijdens het telefoongesperk met de RSR klantenservice.</string>
 </dict>
 </plist>

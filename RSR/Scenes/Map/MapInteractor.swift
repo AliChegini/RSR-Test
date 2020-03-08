@@ -25,11 +25,9 @@ protocol MapDataStore {
 }
 
 class MapInteractor: NSObject, MapBusinessLogic, MapDataStore {
-    private let permissionWorker = PermissionWorker()
     private let locationManager = CLLocationManager()
     
     private var presenter: MapPresentable?
-    
     
     init(presenter: MapPresentable) {
         super.init()
@@ -39,12 +37,15 @@ class MapInteractor: NSObject, MapBusinessLogic, MapDataStore {
     }
     
     
-    
     func askPermission(request: MapModels.AskForPermission.Request) {
-        do {
-            try permissionWorker.requestPermission()
-        } catch {
-            print("this is error from permission worker", error)
+        let authorizationStatus = CLLocationManager.authorizationStatus()
+        if authorizationStatus == .restricted || authorizationStatus == .denied {
+            let response = MapModels.AskForPermission.Response()
+            presenter?.presentPermissionAlert(response: response)
+        } else if authorizationStatus == .notDetermined {
+            locationManager.requestWhenInUseAuthorization()
+        } else {
+            return
         }
     }
     
@@ -64,7 +65,6 @@ class MapInteractor: NSObject, MapBusinessLogic, MapDataStore {
     }
     
 }
-
 
 
 extension MapInteractor: CLLocationManagerDelegate {
@@ -111,7 +111,7 @@ extension MapInteractor: CLLocationManagerDelegate {
     
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        //self.locationDelegate?.failedToObtainLocation(error)
-        print(error)
+        let response = MapModels.AskForPermission.Response()
+        presenter?.presentPermissionAlert(response: response)
     }
 }

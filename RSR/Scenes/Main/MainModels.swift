@@ -43,5 +43,4 @@ enum MainModels {
             let deviceType: DeviceType
         }
     }
-    
 }

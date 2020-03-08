@@ -16,6 +16,7 @@ import UIKit
 protocol MapPresentable {
     func presentAddress(response: MapModels.LocateTheUser.Response)
     func presentElementsForDeviceType(response: MapModels.ShowElementsForDevice.Response)
+    func presentPermissionAlert(response: MapModels.AskForPermission.Response)
 }
 
 class MapPresenter: MapPresentable {
@@ -34,6 +35,11 @@ class MapPresenter: MapPresentable {
     func presentElementsForDeviceType(response: MapModels.ShowElementsForDevice.Response) {
         let viewModel = MapModels.ShowElementsForDevice.ViewModel(deviceType: response.deviceType)
         viewController?.displayElementsForDeviceType(viewModel: viewModel)
+    }
+    
+    func presentPermissionAlert(response: MapModels.AskForPermission.Response) {
+        let viewModel = MapModels.AskForPermission.ViewModel()
+        viewController?.displayPermissionAlert(viewModel: viewModel)
     }
     
 }

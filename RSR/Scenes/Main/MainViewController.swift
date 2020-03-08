@@ -74,12 +74,21 @@ class MainViewController: UIViewController, MainDisplayable {
     }
     
     
+    // MARK: Boiler plate code
     
-    fileprivate func roundTheButtons() {
-        showMapButton.layer.cornerRadius = 10
-        iPadPrivacyButton.layer.cornerRadius = 10
-    }
-    
+//    func doSomething() {
+//        let request = Main.Something.Request()
+//        interactor?.doSomething(request: request)
+//    }
+//
+//    func displaySomething(viewModel: MainModels.ViewModel) {
+//        //nameTextField.text = viewModel.name
+//    }
+}
+
+
+
+extension MainViewController {
     fileprivate func createAndShowAlert() {
         let alert = UIAlertController(title: nil, message: "Om gebruik te maken van deze app dient u het privacybeleid te accepteren", preferredStyle: .alert)
         
@@ -99,15 +108,8 @@ class MainViewController: UIViewController, MainDisplayable {
     }
     
     
-    
-    // MARK: Boiler plate code
-    
-//    func doSomething() {
-//        let request = Main.Something.Request()
-//        interactor?.doSomething(request: request)
-//    }
-//
-//    func displaySomething(viewModel: MainModels.ViewModel) {
-//        //nameTextField.text = viewModel.name
-//    }
+    fileprivate func roundTheButtons() {
+        showMapButton.layer.cornerRadius = 10
+        iPadPrivacyButton.layer.cornerRadius = 10
+    }
 }
