@@ -14,7 +14,15 @@
 import UIKit
 
 protocol MainDisplayable: class {
+    /**
+    Displays a privacy alert to ask for user consent on privacy
+    - Parameter viewModel: empty ViewModel object
+    */
     func displayPrivacyAlert(viewModel: MainModels.AskForUserConsent.ViewModel)
+    /**
+    Displays appropriate UI elements based on device type
+    - Parameter viewModel: indicating device type (iPad or iPhone)
+    */
     func displayElementsForDeviceType(viewModel: MainModels.ShowElementsForDevice.ViewModel)
 }
 
@@ -64,6 +72,11 @@ class MainViewController: UIViewController, MainDisplayable {
         interactor.checkUserConsent(request: request)
     }
     
+    fileprivate func openPrivacyLink() {
+        let request = MainModels.OpenPrivacyLink.Request()
+        interactor.openPrivacyLink(request: request)
+    }
+    
     
     @IBAction func policyButtonAction(_ sender: UIBarButtonItem) {
         createAndShowAlert()
@@ -89,25 +102,26 @@ class MainViewController: UIViewController, MainDisplayable {
 
 
 extension MainViewController {
+    /**
+    Creates  and present privacy alert to user
+    */
     fileprivate func createAndShowAlert() {
         let alert = UIAlertController(title: nil, message: "Om gebruik te maken van deze app dient u het privacybeleid te accepteren", preferredStyle: .alert)
         
         alert.addAction(UIAlertAction(title: "Accepteren", style: .default, handler: { (action) in
-            // save in user defaults
+            // save consent in user defaults
             self.defaults.set(true, forKey: "PrivacyConsent")
         }))
         
         alert.addAction(UIAlertAction(title: "Ga naar privacybeleid", style: .default, handler: { (action) in
-            // open link in browser
-            if let url = URL(string: "https://www.rsr.nl/index.php?page=privacy-wetgeving") {
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            }
+            self.openPrivacyLink()
         }))
-        
         self.present(alert, animated: true, completion: nil)
     }
     
-    
+    /**
+    Creates  rounded corners for buttons
+    */
     fileprivate func roundTheButtons() {
         showMapButton.layer.cornerRadius = 10
         iPadPrivacyButton.layer.cornerRadius = 10

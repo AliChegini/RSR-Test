@@ -16,6 +16,7 @@ import UIKit
 protocol MainBusinessLogic {
     func checkUserConsent(request: MainModels.AskForUserConsent.Request)
     func checkDeviceType(request: MainModels.ShowElementsForDevice.Request)
+    func openPrivacyLink(request: MainModels.OpenPrivacyLink.Request)
 }
 
 protocol MainDataStore {
@@ -49,6 +50,14 @@ class MainInteractor: MainBusinessLogic, MainDataStore {
         } else if UIDevice.current.userInterfaceIdiom == .pad {
             let response = MainModels.ShowElementsForDevice.Response.init(deviceType: .pad)
             presenter?.presentElementsForDeviceType(response: response)
+        }
+    }
+    
+    
+    func openPrivacyLink(request: MainModels.OpenPrivacyLink.Request) {
+        // open link in browser
+        if let url = URL(string: "https://www.rsr.nl/index.php?page=privacy-wetgeving") {
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
     

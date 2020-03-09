@@ -14,7 +14,7 @@
 import UIKit
 
 enum MainModels {
-    
+    /// Use case to ask user consent on privacy policy
     enum AskForUserConsent {
         struct Request {
             
@@ -29,7 +29,7 @@ enum MainModels {
         }
     }
     
-    // use case to show the proper UI elements basedon device type
+    /// Use case to show the proper UI elements based on device type
     enum ShowElementsForDevice {
         struct Request {
             
@@ -41,6 +41,13 @@ enum MainModels {
         
         struct ViewModel {
             let deviceType: DeviceType
+        }
+    }
+    
+    /// Use case to open link for privacy policy
+    enum OpenPrivacyLink {
+        struct Request {
+            
         }
     }
 }

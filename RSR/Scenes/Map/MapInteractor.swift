@@ -18,6 +18,8 @@ protocol MapBusinessLogic {
     func askPermission(request: MapModels.AskForPermission.Request)
     func locateUser(request: MapModels.LocateTheUser.Request)
     func checkDeviceType(request: MapModels.ShowElementsForDevice.Request)
+    func openAppUrl(request: MapModels.OpenAppURL.Request)
+    func callTheCenter(request: MapModels.CallTheCenter.Request)
 }
 
 protocol MapDataStore {
@@ -40,6 +42,7 @@ class MapInteractor: NSObject, MapBusinessLogic, MapDataStore {
     func askPermission(request: MapModels.AskForPermission.Request) {
         let authorizationStatus = CLLocationManager.authorizationStatus()
         if authorizationStatus == .restricted || authorizationStatus == .denied {
+            // if status is restricted or denied completes the VIP cycle to alert the user
             let response = MapModels.AskForPermission.Response()
             presenter?.presentPermissionAlert(response: response)
         } else if authorizationStatus == .notDetermined {
@@ -54,6 +57,7 @@ class MapInteractor: NSObject, MapBusinessLogic, MapDataStore {
         locationManager.requestLocation()
     }
     
+    
     func checkDeviceType(request: MapModels.ShowElementsForDevice.Request) {
         if UIDevice.current.userInterfaceIdiom == .phone {
             let response = MapModels.ShowElementsForDevice.Response.init(deviceType: .phone)
@@ -64,6 +68,21 @@ class MapInteractor: NSObject, MapBusinessLogic, MapDataStore {
         }
     }
     
+    
+    func openAppUrl(request: MapModels.OpenAppURL.Request) {
+        if let url = URL(string: UIApplication.openSettingsURLString) {
+            // open the app permission in Settings app
+            UIApplication.shared.open(url, options: [:], completionHandler: nil)
+        }
+    }
+    
+    
+    func callTheCenter(request: MapModels.CallTheCenter.Request) {
+        let number = "+319007788990"
+        if let url = URL(string: "tel://\(number)"), UIApplication.shared.canOpenURL(url) {
+            UIApplication.shared.open(url)
+        }
+    }
 }
 
 
@@ -111,7 +130,6 @@ extension MapInteractor: CLLocationManagerDelegate {
     
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
-        let response = MapModels.AskForPermission.Response()
-        presenter?.presentPermissionAlert(response: response)
+        locationManager.requestLocation()
     }
 }

@@ -10,7 +10,7 @@ import UIKit
 
 class CustomCalloutViews: UIView {
     
-    // label at the top
+    /// label at the top of the callout
     let titleLabel: UILabel = {
         
         let label = UILabel()
@@ -25,7 +25,7 @@ class CustomCalloutViews: UIView {
     }()
     
     
-    // label in the middle
+    /// label in the middle of the callout
     let addressLabel: UILabel = {
         
         let addressLabel = UILabel()
@@ -40,7 +40,7 @@ class CustomCalloutViews: UIView {
     }()
     
     
-    // label at the bottom
+    /// label at the bottom of the callout
     let instructionLabel: UILabel = {
         
         let label = UILabel()
@@ -56,7 +56,7 @@ class CustomCalloutViews: UIView {
     }()
     
     
-   // calloutView contains all the labels
+   /// calloutView contains all the labels
     let calloutView: UIImageView = {
         let view = UIImageView()
         view.translatesAutoresizingMaskIntoConstraints = false

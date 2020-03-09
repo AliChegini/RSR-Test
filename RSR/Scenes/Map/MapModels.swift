@@ -15,7 +15,7 @@ import UIKit
 import CoreLocation
 
 enum MapModels {
-    // AskForPermission use case
+    /// Use case  to AskForPermission
     enum AskForPermission {
         struct Request {
             
@@ -30,7 +30,7 @@ enum MapModels {
         }
     }
     
-    // LocateTheUser use case
+    /// Use case to LocateTheUser
     enum LocateTheUser {
         struct Request {
             
@@ -47,7 +47,7 @@ enum MapModels {
         }
     }
     
-    // use case to show the proper UI elements basedon device type
+    /// Use case to show the proper UI elements based on device type
     enum ShowElementsForDevice {
         struct Request {
             
@@ -62,4 +62,17 @@ enum MapModels {
         }
     }
     
+    /// Use case to open app URL
+    enum OpenAppURL {
+        struct Request {
+            
+        }
+    }
+    
+    /// Use case to initiate a phone call
+    enum CallTheCenter {
+        struct Request {
+            
+        }
+    }
 }

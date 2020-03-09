@@ -29,7 +29,7 @@ class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
     // ring button at the bottom of scene
     @IBOutlet weak var ringButton: UIButton!
     
-    // cancel button at the top left corner of middle box
+    // cancel button at the top left corner of middle box view
     @IBOutlet weak var cancelButton: UIButton!
     
     // middle yellow box containing labels and button
@@ -74,6 +74,16 @@ class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
         interactor.checkDeviceType(request: request)
     }
     
+    fileprivate func openAppUrl() {
+        let request = MapModels.OpenAppURL.Request()
+        interactor.openAppUrl(request: request)
+    }
+    
+    fileprivate func callTheCenter() {
+        let request = MapModels.CallTheCenter.Request()
+        interactor.callTheCenter(request: request)
+    }
+    
     
     func displayCustomPin(viewModel: MapModels.LocateTheUser.ViewModel) {
         pin = CustomAnnotation(coordinate: viewModel.coordinate, title: viewModel.stringLocation)
@@ -84,7 +94,6 @@ class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
         let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
         let region = MKCoordinateRegion(center: viewModel.coordinate, span: span)
         mapView.setRegion(region, animated: true)
-        
         mapView.selectAnnotation(pin, animated: true)
     }
     
@@ -113,35 +122,28 @@ class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
     }
     
     @IBAction func finalRingButtonAction(_ sender: UIButton) {
-        let number = "+319007788990"
-        if let url = URL(string: "tel://\(number)"), UIApplication.shared.canOpenURL(url) {
-            UIApplication.shared.open(url)
-        }
+        callTheCenter()
     }
     
     
     @IBAction func iPadRingButtonAction(_ sender: UIButton) {
-        let number = "+319007788990"
-        if let url = URL(string: "tel://\(number)"), UIApplication.shared.canOpenURL(url) {
-            UIApplication.shared.open(url)
-        }
+        callTheCenter()
     }
     
     
-    
-    // hide callout and button at the bottom of the page
+    /// Hides callout and button at the bottom of the page
     fileprivate func hideCalloutAndRingButton() {
         calloutElements.calloutView.isHidden = true
         ringButton.isHidden = true
     }
     
-    // hide middle box and cancel button
+    /// Hides middle box and cancel button
     fileprivate func hideMiddleBoxAndCancelButton() {
         middleBoxView.isHidden = true
         cancelButton.isHidden = true
     }
     
-    // show callout and button at the bottom of the page
+    /// Shows callout and button at the bottom of the page
     fileprivate func showCalloutAndRingButton() {
         UIView.transition(with: calloutElements.calloutView,
                           duration: 0.4,
@@ -158,7 +160,7 @@ class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
     }
     
     
-    // function to show middle box and cancel button
+    /// Shows middle box and cancel button
     fileprivate func showMiddleBoxAndCancelButton() {
         UIView.transition(with: middleBoxView,
                           duration: 0.4,
@@ -175,8 +177,8 @@ class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
     }
     
 
-    // methods for Custom annotations
-    
+    // Methods for Custom annotations
+    //
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         let annotationView = MKAnnotationView(annotation: pin, reuseIdentifier: "UserLocation")
         annotationView.image = UIImage(named: "marker")
@@ -193,26 +195,25 @@ class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
 
 
 extension MapViewController {
+    /**
+    Creates  and present  alert to ask for location permission
+    */
+    fileprivate func createAndShowPermissionAlert() {
+        let alert = UIAlertController(title: "Location Permission", message: "Please authorize RSR to find your location while using the app.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Close", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+            alert.dismiss(animated: false) {
+                self.openAppUrl()
+            }
+        }))
+        self.present(alert, animated: true, completion: nil)
+    }
     
-    // functionn to cut buttons corners
+    /**
+    Creates  rounded corners for buttons
+    */
     fileprivate func roundTheButtons() {
         ringButton.layer.cornerRadius = 10
         finalRingButton.layer.cornerRadius = 10
-    }
-    
-    
-    // alert the user in case of denied permission
-    func createAndShowPermissionAlert() {
-        let alert = UIAlertController(title: "Location Permission", message: "Please authorize RSR to find your location while using the app.", preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
-            
-            if let url = URL(string: UIApplication.openSettingsURLString) {
-                // open the app permission in Settings app
-                UIApplication.shared.open(url, options: [:], completionHandler: nil)
-            }
-        }))
-        
-        self.present(alert, animated: true, completion: nil)
     }
 }

@@ -28,7 +28,8 @@ class MapPresenter: MapPresentable {
     
     
     func presentAddress(response: MapModels.LocateTheUser.Response) {
-        let viewModel = MapModels.LocateTheUser.ViewModel(stringLocation: response.stringLocation, coordinate: response.coordinate)
+        let viewModel = MapModels.LocateTheUser.ViewModel(stringLocation: response.stringLocation,
+                                                          coordinate: response.coordinate)
         viewController?.displayCustomPin(viewModel: viewModel)
     }
     
