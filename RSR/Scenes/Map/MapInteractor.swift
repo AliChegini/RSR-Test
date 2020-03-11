@@ -13,11 +13,13 @@
 
 import UIKit
 import CoreLocation
+import Network
 
 protocol MapBusinessLogic {
     func askPermission(request: MapModels.AskForPermission.Request)
     func locateUser(request: MapModels.LocateTheUser.Request)
     func checkDeviceType(request: MapModels.ShowElementsForDevice.Request)
+    func checkInternetConnection(request: MapModels.CheckInternetConnection.Request)
     func openAppUrl(request: MapModels.OpenAppURL.Request)
     func callTheCenter(request: MapModels.CallTheCenter.Request)
 }
@@ -31,6 +33,11 @@ class MapInteractor: NSObject, MapBusinessLogic, MapDataStore {
     
     private var presenter: MapPresentable?
     
+    // two vars for monitoring network status
+    private var networkMonitor = NWPathMonitor()
+    private var queue = DispatchQueue(label: "NetworkMonitor")
+    
+
     init(presenter: MapPresentable) {
         super.init()
         locationManager.delegate = self
@@ -66,6 +73,20 @@ class MapInteractor: NSObject, MapBusinessLogic, MapDataStore {
             let response = MapModels.ShowElementsForDevice.Response.init(deviceType: .pad)
             presenter?.presentElementsForDeviceType(response: response)
         }
+    }
+    
+    
+    func checkInternetConnection(request: MapModels.CheckInternetConnection.Request) {
+        // check for internet connection
+        networkMonitor.pathUpdateHandler = { path in
+            if path.status == .unsatisfied {
+                let response = MapModels.CheckInternetConnection.Response()
+                self.presenter?.presentNetworkAlert(response: response)
+                return
+            }
+        }
+        
+        networkMonitor.start(queue: queue)
     }
     
     

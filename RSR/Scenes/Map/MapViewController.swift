@@ -18,6 +18,7 @@ protocol MapDisplayable: class {
     func displayCustomPin(viewModel: MapModels.LocateTheUser.ViewModel)
     func displayElementsForDeviceType(viewModel: MapModels.ShowElementsForDevice.ViewModel)
     func displayPermissionAlert(viewModel: MapModels.AskForPermission.ViewModel)
+    func displayNetworkAlert(viewModel: MapModels.CheckInternetConnection.ViewModel)
 }
 
 class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
@@ -46,14 +47,16 @@ class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
     // callout elements including labels 
     var calloutElements = CustomCalloutViews()
     
+    
     // MARK: View lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         roundTheButtons()
         mapView.delegate = self
+        
         askPermission()
+        checkInternetConnection()
         locateUser()
         checkDeviceType()
     }
@@ -72,6 +75,11 @@ class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
     fileprivate func checkDeviceType() {
         let request = MapModels.ShowElementsForDevice.Request()
         interactor.checkDeviceType(request: request)
+    }
+    
+    fileprivate func checkInternetConnection() {
+        let request = MapModels.CheckInternetConnection.Request()
+        interactor.checkInternetConnection(request: request)
     }
     
     fileprivate func openAppUrl() {
@@ -108,6 +116,11 @@ class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
     
     func displayPermissionAlert(viewModel: MapModels.AskForPermission.ViewModel) {
         createAndShowPermissionAlert()
+    }
+    
+    
+    func displayNetworkAlert(viewModel: MapModels.CheckInternetConnection.ViewModel) {
+        createAndShowNetworkAlert()
     }
     
     
@@ -209,6 +222,21 @@ extension MapViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
+    /**
+    Creates  and present  alert to alert user about connection issue
+    */
+    func createAndShowNetworkAlert() {
+        let alert = UIAlertController(title: "Internet Error", message: "You are not connected to internet. Please check your connection and try again.", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { (action) in
+            self.navigationController?.popViewController(animated: true)
+        }))
+        
+        DispatchQueue.main.async {
+            self.present(alert, animated: true, completion: nil)
+        }
+    }
+
     /**
     Creates  rounded corners for buttons
     */

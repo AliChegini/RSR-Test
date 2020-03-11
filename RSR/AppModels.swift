@@ -25,18 +25,6 @@ class CustomAnnotation: NSObject, MKAnnotation {
 }
 
 
-enum NetworkStatus {
-    case connected
-    case notConnected
-    case unknown
-}
-
-
-enum RSRErrors: Error {
-    case disallowedByUser
-}
-
-
 enum DeviceType {
     case phone
     case pad

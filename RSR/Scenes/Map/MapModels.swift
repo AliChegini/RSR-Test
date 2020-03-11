@@ -62,6 +62,21 @@ enum MapModels {
         }
     }
     
+    /// Use case  to check internet connection
+    enum CheckInternetConnection {
+        struct Request {
+            
+        }
+        
+        struct Response {
+            
+        }
+        
+        struct ViewModel {
+            
+        }
+    }
+    
     /// Use case to open app URL
     enum OpenAppURL {
         struct Request {

@@ -17,6 +17,7 @@ protocol MapPresentable {
     func presentAddress(response: MapModels.LocateTheUser.Response)
     func presentElementsForDeviceType(response: MapModels.ShowElementsForDevice.Response)
     func presentPermissionAlert(response: MapModels.AskForPermission.Response)
+    func presentNetworkAlert(response: MapModels.CheckInternetConnection.Response)
 }
 
 class MapPresenter: MapPresentable {
@@ -41,6 +42,11 @@ class MapPresenter: MapPresentable {
     func presentPermissionAlert(response: MapModels.AskForPermission.Response) {
         let viewModel = MapModels.AskForPermission.ViewModel()
         viewController?.displayPermissionAlert(viewModel: viewModel)
+    }
+    
+    func presentNetworkAlert(response: MapModels.CheckInternetConnection.Response) {
+        let viewModel = MapModels.CheckInternetConnection.ViewModel()
+        viewController?.displayNetworkAlert(viewModel: viewModel)
     }
     
 }

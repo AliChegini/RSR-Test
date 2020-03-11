@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7C2B28C72419094500879AA1 /* AboutPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2B28C22419094500879AA1 /* AboutPresenter.swift */; };
+		7C2B28C82419094500879AA1 /* AboutRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2B28C32419094500879AA1 /* AboutRouter.swift */; };
+		7C2B28C92419094500879AA1 /* AboutModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2B28C42419094500879AA1 /* AboutModels.swift */; };
+		7C2B28CA2419094500879AA1 /* AboutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2B28C52419094500879AA1 /* AboutViewController.swift */; };
+		7C2B28CB2419094500879AA1 /* AboutInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2B28C62419094500879AA1 /* AboutInteractor.swift */; };
 		7CA26C892410E673001D3237 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA26C882410E673001D3237 /* AppDelegate.swift */; };
 		7CA26C902410E673001D3237 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CA26C8E2410E673001D3237 /* Main.storyboard */; };
 		7CA26C922410E675001D3237 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7CA26C912410E675001D3237 /* Assets.xcassets */; };
@@ -26,6 +31,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7C2B28C22419094500879AA1 /* AboutPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutPresenter.swift; sourceTree = "<group>"; };
+		7C2B28C32419094500879AA1 /* AboutRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutRouter.swift; sourceTree = "<group>"; };
+		7C2B28C42419094500879AA1 /* AboutModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutModels.swift; sourceTree = "<group>"; };
+		7C2B28C52419094500879AA1 /* AboutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutViewController.swift; sourceTree = "<group>"; };
+		7C2B28C62419094500879AA1 /* AboutInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutInteractor.swift; sourceTree = "<group>"; };
 		7CA26C852410E673001D3237 /* RSR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CA26C882410E673001D3237 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7CA26C8F2410E673001D3237 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -125,6 +135,11 @@
 		7CA26CA02410E97D001D3237 /* About */ = {
 			isa = PBXGroup;
 			children = (
+				7C2B28C52419094500879AA1 /* AboutViewController.swift */,
+				7C2B28C62419094500879AA1 /* AboutInteractor.swift */,
+				7C2B28C22419094500879AA1 /* AboutPresenter.swift */,
+				7C2B28C42419094500879AA1 /* AboutModels.swift */,
+				7C2B28C32419094500879AA1 /* AboutRouter.swift */,
 			);
 			path = About;
 			sourceTree = "<group>";
@@ -201,14 +216,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				7CA26C892410E673001D3237 /* AppDelegate.swift in Sources */,
+				7C2B28C82419094500879AA1 /* AboutRouter.swift in Sources */,
 				7CDF835B24124E8F00301746 /* MapRouter.swift in Sources */,
 				7CDF835A24124E8F00301746 /* MapPresenter.swift in Sources */,
 				7CDF83662412854800301746 /* CustomCalloutViews.swift in Sources */,
+				7C2B28C72419094500879AA1 /* AboutPresenter.swift in Sources */,
 				7CDF835D24124E8F00301746 /* MapViewController.swift in Sources */,
 				7CDF83642412823800301746 /* AppModels.swift in Sources */,
 				7CA26CA72410E9B3001D3237 /* MainRouter.swift in Sources */,
+				7C2B28CA2419094500879AA1 /* AboutViewController.swift in Sources */,
 				7CA26CA82410E9B3001D3237 /* MainModels.swift in Sources */,
 				7CDF835E24124E8F00301746 /* MapInteractor.swift in Sources */,
+				7C2B28CB2419094500879AA1 /* AboutInteractor.swift in Sources */,
+				7C2B28C92419094500879AA1 /* AboutModels.swift in Sources */,
 				7CDF835C24124E8F00301746 /* MapModels.swift in Sources */,
 				7CA26CA92410E9B3001D3237 /* MainViewController.swift in Sources */,
 				7CA26CA62410E9B3001D3237 /* MainPresenter.swift in Sources */,
