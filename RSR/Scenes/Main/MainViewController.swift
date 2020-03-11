@@ -79,11 +79,11 @@ class MainViewController: UIViewController, MainDisplayable {
     
     
     @IBAction func policyButtonAction(_ sender: UIBarButtonItem) {
-        createAndShowAlert()
+        //createAndShowAlert()
     }
     
     @IBAction func iPadPrivacyButtonAction(_ sender: UIButton) {
-        createAndShowAlert()
+        //createAndShowAlert()
     }
     
     

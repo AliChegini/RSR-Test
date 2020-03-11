@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="bjP-4j-Bo6">
-    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <device id="ipad11_0rounded" orientation="portrait" layout="fullscreen" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
@@ -8,19 +8,77 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--View Controller-->
+        <scene sceneID="wQD-V2-VrV">
+            <objects>
+                <viewController id="wFD-X3-fAa" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="4WF-19-3qq">
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="over_image" translatesAutoresizingMaskIntoConstraints="NO" id="rMI-Ss-4vs">
+                                <rect key="frame" x="0.0" y="50" width="834" height="543"/>
+                            </imageView>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="justified" selectable="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hKQ-Ob-o0D">
+                                <rect key="frame" x="20" y="612" width="794" height="532"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <mutableString key="text">Met de hulp van RSR blijft u mobiel. RSR is de leverancier van hulpmiddelen in de regio Noordoost-Nederland. Gedegen kennis en jarenlange ervaring zit in ons DNA verweven en leidt tot het beste advies.  Wilt u meer weten over onze producten en diensten, kijk dan op www.rsr.nl of bezoek onze showrooms in Silvolde en Nieuwleusen. We zijn iedere werkdag geopend van 8.00 tot 17.00 uur. Hier kunt u diverse hulpmiddelen uitproberen en rustig bekijken wat goed bij uw situatie aansluit. Samen met u zoeken we naar hulpmiddelen dat bij u past. RSR maakt mensen mobiel.</mutableString>
+                                <color key="textColor" red="0.57638144489999998" green="0.57636088129999996" blue="0.58456170559999998" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" link="YES"/>
+                            </textView>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="line" translatesAutoresizingMaskIntoConstraints="NO" id="Opv-UB-qHu">
+                                <rect key="frame" x="0.0" y="592" width="834" height="10"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="10" id="ppV-aO-qaE"/>
+                                </constraints>
+                            </imageView>
+                            <imageView hidden="YES" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="small_logo_ipad" translatesAutoresizingMaskIntoConstraints="NO" id="n6d-ja-y6P">
+                                <rect key="frame" x="267" y="924" width="300" height="200"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="300" id="0tm-hv-48f"/>
+                                    <constraint firstAttribute="height" constant="200" id="E7B-xH-L7f"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="Opv-UB-qHu" firstAttribute="leading" secondItem="dEo-e5-gq1" secondAttribute="leading" id="2sV-O7-Zl0"/>
+                            <constraint firstItem="hKQ-Ob-o0D" firstAttribute="leading" secondItem="dEo-e5-gq1" secondAttribute="leading" constant="20" id="7KL-t8-R5Y"/>
+                            <constraint firstItem="dEo-e5-gq1" firstAttribute="trailing" secondItem="Opv-UB-qHu" secondAttribute="trailing" id="K8m-zf-O4s"/>
+                            <constraint firstItem="dEo-e5-gq1" firstAttribute="trailing" secondItem="hKQ-Ob-o0D" secondAttribute="trailing" constant="20" id="OAp-sV-oq0"/>
+                            <constraint firstItem="dEo-e5-gq1" firstAttribute="bottom" secondItem="hKQ-Ob-o0D" secondAttribute="bottom" constant="30" id="OhF-BP-Eso"/>
+                            <constraint firstItem="rMI-Ss-4vs" firstAttribute="leading" secondItem="dEo-e5-gq1" secondAttribute="leading" id="SOn-oS-H7U"/>
+                            <constraint firstItem="rMI-Ss-4vs" firstAttribute="top" secondItem="dEo-e5-gq1" secondAttribute="top" id="XDI-4h-jOJ"/>
+                            <constraint firstItem="Opv-UB-qHu" firstAttribute="centerY" secondItem="4WF-19-3qq" secondAttribute="centerY" id="Z98-kQ-MII"/>
+                            <constraint firstItem="dEo-e5-gq1" firstAttribute="bottom" secondItem="n6d-ja-y6P" secondAttribute="bottom" constant="50" id="aEc-XM-X2z"/>
+                            <constraint firstItem="n6d-ja-y6P" firstAttribute="centerX" secondItem="4WF-19-3qq" secondAttribute="centerX" id="dwS-eJ-Pa3"/>
+                            <constraint firstItem="hKQ-Ob-o0D" firstAttribute="top" secondItem="Opv-UB-qHu" secondAttribute="bottom" constant="10" id="q7p-p8-khF"/>
+                            <constraint firstItem="Opv-UB-qHu" firstAttribute="top" secondItem="rMI-Ss-4vs" secondAttribute="bottom" constant="-1" id="uLJ-9K-QGp"/>
+                            <constraint firstItem="dEo-e5-gq1" firstAttribute="trailing" secondItem="rMI-Ss-4vs" secondAttribute="trailing" id="zLE-Mz-b2u"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="dEo-e5-gq1"/>
+                    </view>
+                    <navigationItem key="navigationItem" id="JQS-5A-0ap"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="ErQ-ag-Q3Y" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="321.73913043478262" y="-611.38392857142856"/>
+        </scene>
         <!--RSR Revalidatieservice-->
         <scene sceneID="oGx-0V-NMW">
             <objects>
                 <viewController id="OjS-tx-WcX" customClass="MainViewController" customModule="RSR" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="2IW-B1-sFh">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" insetsLayoutMarginsFromSafeArea="NO" image="img_background" translatesAutoresizingMaskIntoConstraints="NO" id="Hx8-oG-v7y">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="50" width="834" height="1144"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="pmu-zh-K3c">
-                                <rect key="frame" x="37" y="806" width="340" height="60"/>
+                                <rect key="frame" x="247" y="1104" width="340" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="bnX-aB-2RN">
                                         <rect key="frame" x="0.0" y="0.0" width="340" height="60"/>
@@ -50,6 +108,7 @@
                                         </state>
                                         <connections>
                                             <action selector="iPadPrivacyButtonAction:" destination="OjS-tx-WcX" eventType="touchUpInside" id="Zhu-0f-BCI"/>
+                                            <segue destination="wFD-X3-fAa" kind="show" id="JQ2-0l-wL7"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -74,6 +133,7 @@
                         <barButtonItem key="rightBarButtonItem" image="ic_over_normal" id="KjP-JF-pGg">
                             <connections>
                                 <action selector="policyButtonAction:" destination="OjS-tx-WcX" id="UhM-Cp-qgI"/>
+                                <segue destination="wFD-X3-fAa" kind="show" id="ZFa-Tg-xjx"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -91,14 +151,14 @@
             <objects>
                 <viewController id="EYO-EX-c4A" customClass="MapViewController" customModule="RSR" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="g1x-Fy-q65">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="1194"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" showsUserLocation="YES" translatesAutoresizingMaskIntoConstraints="NO" id="5yc-h7-EDE">
-                                <rect key="frame" x="0.0" y="88" width="414" height="808"/>
+                                <rect key="frame" x="0.0" y="50" width="834" height="1144"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cCi-Ct-IQw">
-                                <rect key="frame" x="37" y="772" width="340" height="60"/>
+                                <rect key="frame" x="247" y="1084" width="340" height="60"/>
                                 <color key="backgroundColor" red="0.0" green="0.57008767130000004" blue="0.74113047119999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="340" id="FqQ-N7-jIp"/>
@@ -112,22 +172,22 @@
                                 </connections>
                             </button>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KMJ-LB-CHL">
-                                <rect key="frame" x="30" y="348" width="354" height="200"/>
+                                <rect key="frame" x="30" y="497" width="774" height="200"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Belkosten" textAlignment="center" lineBreakMode="wordWrap" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ads-kF-NDN">
-                                        <rect key="frame" x="30" y="20" width="294" height="24"/>
+                                        <rect key="frame" x="30" y="20" width="714" height="24"/>
                                         <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Voor dit nummer betaalt u uw gebruikelijke belkosten." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="15f-PB-mbQ">
-                                        <rect key="frame" x="30" y="54" width="294" height="41"/>
+                                        <rect key="frame" x="30" y="54" width="714" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="Zj8-XK-Xyr">
-                                        <rect key="frame" x="20" y="130" width="314" height="50"/>
+                                        <rect key="frame" x="20" y="130" width="734" height="50"/>
                                         <color key="backgroundColor" red="0.0" green="0.57008767130000004" blue="0.74113047119999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="xO3-oe-BGE"/>
@@ -156,7 +216,7 @@
                                 </constraints>
                             </view>
                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JuM-pT-uGH">
-                                <rect key="frame" x="30" y="318" width="100" height="30"/>
+                                <rect key="frame" x="30" y="467" width="100" height="30"/>
                                 <color key="backgroundColor" red="0.0" green="0.57008767130000004" blue="0.74113047119999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="57I-ZS-2Cw"/>
@@ -170,10 +230,10 @@
                                 </connections>
                             </button>
                             <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KIt-TR-78P">
-                                <rect key="frame" x="0.0" y="696" width="414" height="200"/>
+                                <rect key="frame" x="0.0" y="994" width="834" height="200"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AYz-Un-HO2">
-                                        <rect key="frame" x="82" y="82" width="250" height="36"/>
+                                        <rect key="frame" x="292" y="82" width="250" height="36"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="250" id="qvp-fy-Z8s"/>
                                         </constraints>
@@ -186,13 +246,13 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Voor dit nummer betaalt u uw gebruikelijke belkosten." textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oMY-fJ-jjB">
-                                        <rect key="frame" x="2.5" y="149" width="409" height="21"/>
+                                        <rect key="frame" x="212.5" y="149" width="409" height="21"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Neem contact op met RSR Nederland" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="g16-Zq-xNc">
-                                        <rect key="frame" x="48" y="20" width="318.5" height="23"/>
+                                        <rect key="frame" x="258" y="20" width="318.5" height="23"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -242,7 +302,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="pvE-93-JLf" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1286.9565217391305" y="75.669642857142847"/>
+            <point key="canvasLocation" x="1510" y="92"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="elu-Zc-MB7">
@@ -250,7 +310,7 @@
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="bjP-4j-Bo6" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" backIndicatorImage="terug_normal" backIndicatorTransitionMaskImage="terug_normal" id="QX3-Zg-tkI">
-                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <rect key="frame" x="0.0" y="0.0" width="834" height="50"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="barTintColor" red="0.0" green="0.57008767130000004" blue="0.74113047119999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </navigationBar>
@@ -270,7 +330,13 @@
         <image name="ic_over_ipad" width="30" height="30"/>
         <image name="ic_over_normal" width="30" height="30"/>
         <image name="ic_phone" width="32" height="36"/>
-        <image name="img_background" width="320" height="416"/>
+        <image name="img_background" width="768" height="1024"/>
+        <image name="line" width="768" height="18"/>
+        <image name="over_image" width="768" height="524"/>
+        <image name="small_logo_ipad" width="176" height="148"/>
         <image name="terug_normal" width="54" height="22"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="ZFa-Tg-xjx"/>
+    </inferredMetricsTieBreakers>
 </document>
