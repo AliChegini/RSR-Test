@@ -37,12 +37,11 @@ enum MapModels {
         }
         
         struct Response {
-            let stringLocation: String
-            let coordinate: CLLocationCoordinate2D
+            let location: CLLocation
         }
         
         struct ViewModel {
-            let stringLocation: String
+            let address: String
             let coordinate: CLLocationCoordinate2D
         }
     }

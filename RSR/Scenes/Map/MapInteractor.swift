@@ -115,38 +115,11 @@ extension MapInteractor: CLLocationManagerDelegate {
         guard let location = locations.last else {
             return
         }
+        print("location manager is updating location", location)
         
-        // determining the address using the obtained location(coordinates)
-        let geocoder = CLGeocoder()
-        geocoder.reverseGeocodeLocation(location) { (placemark, error) in
-            if let placemark = placemark {
-                var stringAddress = ""
-                guard let info = placemark.first else {
-                    return
-                }
-                
-                // constructing string address to show user
-                if let streetName = info.thoroughfare {
-                    stringAddress += "\(streetName) "
-                }
-                
-                if let streetNumber = info.subThoroughfare {
-                    stringAddress += "\(streetNumber), "
-                }
-                
-                if let postCode = info.postalCode {
-                    stringAddress += "\(postCode), "
-                }
-            
-                if let city = info.locality {
-                    stringAddress +=  "\(city)"
-                }
-                
-                // construct response object and call presenter's method
-                let response = MapModels.LocateTheUser.Response(stringLocation: stringAddress, coordinate: location.coordinate)
-                self.presenter?.presentAddress(response: response)
-            }
-        }
+        // construct response object and call presenter's method
+        let response = MapModels.LocateTheUser.Response(location: location)
+        self.presenter?.presentAddress(response: response)
     }
     
     

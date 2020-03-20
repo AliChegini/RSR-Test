@@ -12,6 +12,7 @@
 //
 
 import UIKit
+import CoreLocation
 
 protocol MapPresentable {
     func presentAddress(response: MapModels.LocateTheUser.Response)
@@ -29,10 +30,39 @@ class MapPresenter: MapPresentable {
     
     
     func presentAddress(response: MapModels.LocateTheUser.Response) {
-        let viewModel = MapModels.LocateTheUser.ViewModel(stringLocation: response.stringLocation,
-                                                          coordinate: response.coordinate)
-        viewController?.displayCustomPin(viewModel: viewModel)
+        // determining the address using the obtained location
+        let geocoder = CLGeocoder()
+        geocoder.reverseGeocodeLocation(response.location) { (placemark, error) in
+            if let placemark = placemark {
+                var stringAddress = ""
+                guard let info = placemark.first else {
+                    return
+                }
+                
+                // constructing string address to show user
+                if let streetName = info.thoroughfare {
+                    stringAddress += "\(streetName) "
+                }
+                
+                if let streetNumber = info.subThoroughfare {
+                    stringAddress += "\(streetNumber), "
+                }
+                
+                if let postCode = info.postalCode {
+                    stringAddress += "\(postCode), "
+                }
+            
+                if let city = info.locality {
+                    stringAddress +=  "\(city)"
+                }
+        
+                let viewModel = MapModels.LocateTheUser.ViewModel(address: stringAddress,
+                                                                  coordinate: response.location.coordinate)
+                self.viewController?.displayCustomPin(viewModel: viewModel)
+            }
+        }
     }
+    
     
     func presentElementsForDeviceType(response: MapModels.ShowElementsForDevice.Response) {
         let viewModel = MapModels.ShowElementsForDevice.ViewModel(deviceType: response.deviceType)
