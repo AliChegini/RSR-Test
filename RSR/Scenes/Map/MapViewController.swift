@@ -54,7 +54,7 @@ class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
         super.viewDidLoad()
         roundTheButtons()
         mapView.delegate = self
-        mapView.register(CustomAnnotation.self, forAnnotationViewWithReuseIdentifier: "UserLocation")
+        //mapView.register(CustomAnnotation.self, forAnnotationViewWithReuseIdentifier: "UserLocation")
         
         askPermission()
         checkInternetConnection()
@@ -196,23 +196,44 @@ class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
     //
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
         print("Method for custom annotation is getting called")
-        if pin == nil {
-            let annotationView = MKAnnotationView(annotation: pin, reuseIdentifier: "UserLocation")
-            annotationView.image = UIImage(named: "marker")
-            annotationView.canShowCallout = false
-            
-            return annotationView
-        } else {
-            let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "UserLocation", for: pin)
-            annotationView.image = UIImage(named: "marker")
-            annotationView.canShowCallout = false
-            
-            return annotationView
-        }
+        let annotationView = MKAnnotationView(annotation: pin, reuseIdentifier: "UserLocation")
+        annotationView.image = UIImage(named: "marker")
+        annotationView.canShowCallout = false
+        
+        return annotationView
+        
+//        if pin == nil {
+//            let annotationView = MKAnnotationView(annotation: pin, reuseIdentifier: "UserLocation")
+//            annotationView.image = UIImage(named: "marker")
+//            annotationView.canShowCallout = false
+//
+//            return annotationView
+//        } else {
+//            let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "UserLocation", for: pin)
+//            annotationView.image = UIImage(named: "marker")
+//            annotationView.canShowCallout = false
+//
+//            return annotationView
+//        }
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        calloutElements.setupViews(view: view)
+        //calloutElements.setupViews(view: view)
+        if let callout = Bundle.main.loadNibNamed("CalloutView", owner: self, options: nil)?.first as? CalloutView {
+            
+            view.addSubview(callout)
+            
+            
+            NSLayoutConstraint.activate([
+                // auto layout constraints for calloutView
+                callout.bottomAnchor.constraint(equalTo: view.topAnchor),
+                callout.widthAnchor.constraint(equalToConstant: 200),
+                callout.heightAnchor.constraint(equalToConstant: 200),
+                callout.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -10)
+                ])
+            
+            
+        }
     }
 }
 
