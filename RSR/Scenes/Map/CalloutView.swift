@@ -7,16 +7,21 @@
 //
 
 import UIKit
+import MapKit
 
-
-@IBDesignable
 class CalloutView: UIView {
-    @IBOutlet weak var calloutView: UIImageView!
+
+    @IBOutlet weak var addressLabel: UILabel!
     
-    @IBInspectable
-    var cornerRadius: CGFloat {
-        set { layer.cornerRadius = newValue }
-        get { return layer.cornerRadius     }
+    func setup(view: MKAnnotationView) {
+        view.addSubview(self)
+        
+        NSLayoutConstraint.activate([
+            // auto layout constraints for callout
+            self.bottomAnchor.constraint(equalTo: view.topAnchor, constant: 10),
+            self.widthAnchor.constraint(equalToConstant: 250),
+            self.heightAnchor.constraint(equalToConstant: 250),
+            self.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -9)
+            ])
     }
-    
 }

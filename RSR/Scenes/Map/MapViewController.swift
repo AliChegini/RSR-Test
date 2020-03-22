@@ -44,8 +44,12 @@ class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
     
     var pin: CustomAnnotation!
     
-    // callout elements including labels 
-    var calloutElements = CustomCalloutViews()
+    
+    let callout = Bundle.main.loadNibNamed("CalloutView", owner: self, options: nil)?.first as! CalloutView
+    
+
+    // viewModel
+    var viewModel: MapModels.LocateTheUser.ViewModel?
     
     
     // MARK: View lifecycle
@@ -95,10 +99,10 @@ class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
     
     
     func displayCustomPin(viewModel: MapModels.LocateTheUser.ViewModel) {
+        self.viewModel = viewModel
         print("display custom pin is getting called")
         pin = CustomAnnotation(coordinate: viewModel.coordinate, title: viewModel.address)
         mapView.addAnnotation(pin)
-        calloutElements.addressLabel.text = viewModel.address
         
         // Zooming on annotation
         let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
@@ -148,7 +152,7 @@ class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
     
     /// Hides callout and button at the bottom of the page
     fileprivate func hideCalloutAndRingButton() {
-        calloutElements.calloutView.isHidden = true
+        callout.isHidden = true
         ringButton.isHidden = true
     }
     
@@ -160,11 +164,11 @@ class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
     
     /// Shows callout and button at the bottom of the page
     fileprivate func showCalloutAndRingButton() {
-        UIView.transition(with: calloutElements.calloutView,
+        UIView.transition(with: callout,
                           duration: 0.4,
                           options: .transitionCrossDissolve,
                           animations: {
-            self.calloutElements.calloutView.isHidden = false
+            self.callout.isHidden = false
         })
         UIView.transition(with: ringButton,
                           duration: 0.4,
@@ -218,23 +222,13 @@ class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
     }
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        //calloutElements.setupViews(view: view)
-        if let callout = Bundle.main.loadNibNamed("CalloutView", owner: self, options: nil)?.first as? CalloutView {
-            
-            view.addSubview(callout)
-            
-            
-            NSLayoutConstraint.activate([
-                // auto layout constraints for calloutView
-                callout.bottomAnchor.constraint(equalTo: view.topAnchor),
-                callout.widthAnchor.constraint(equalToConstant: 200),
-                callout.heightAnchor.constraint(equalToConstant: 200),
-                callout.centerXAnchor.constraint(equalTo: view.centerXAnchor, constant: -10)
-                ])
-            
-            
+        if let address = self.viewModel?.address {
+            callout.addressLabel.text = address
         }
+        
+        callout.setup(view: view)
     }
+    
 }
 
 
