@@ -101,14 +101,16 @@ class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
     func displayCustomPin(viewModel: MapModels.LocateTheUser.ViewModel) {
         self.viewModel = viewModel
         print("display custom pin is getting called")
+        
         pin = CustomAnnotation(coordinate: viewModel.coordinate, title: viewModel.address)
-        mapView.addAnnotation(pin)
+        if let userLocation = mapView.annotations.first {
+            mapView.selectAnnotation(userLocation, animated: true)
+        }
         
         // Zooming on annotation
         let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
         let region = MKCoordinateRegion(center: viewModel.coordinate, span: span)
         mapView.setRegion(region, animated: true)
-        mapView.selectAnnotation(pin, animated: true)
     }
     
     
@@ -199,36 +201,26 @@ class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
     // Methods for Custom annotations
     //
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        print("Method for custom annotation is getting called")
-        let annotationView = MKAnnotationView(annotation: pin, reuseIdentifier: "UserLocation")
-        annotationView.image = UIImage(named: "marker")
-        annotationView.canShowCallout = false
-        
+        let reuseID = "UserLocation"
+        var annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: reuseID)
+        if annotationView == nil {
+            annotationView = MKAnnotationView(annotation: annotation, reuseIdentifier: reuseID)
+            annotationView?.canShowCallout = false
+        } else {
+            annotationView?.annotation = annotation
+        }
+
+        annotationView?.image = UIImage(named: "marker")
         return annotationView
-        
-//        if pin == nil {
-//            let annotationView = MKAnnotationView(annotation: pin, reuseIdentifier: "UserLocation")
-//            annotationView.image = UIImage(named: "marker")
-//            annotationView.canShowCallout = false
-//
-//            return annotationView
-//        } else {
-//            let annotationView = mapView.dequeueReusableAnnotationView(withIdentifier: "UserLocation", for: pin)
-//            annotationView.image = UIImage(named: "marker")
-//            annotationView.canShowCallout = false
-//
-//            return annotationView
-//        }
     }
+    
     
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
         if let address = self.viewModel?.address {
             callout.addressLabel.text = address
         }
-        
         callout.setup(view: view)
     }
-    
 }
 
 

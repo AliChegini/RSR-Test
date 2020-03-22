@@ -41,6 +41,7 @@ class MapInteractor: NSObject, MapBusinessLogic, MapDataStore {
     init(presenter: MapPresentable) {
         super.init()
         locationManager.delegate = self
+        locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
         
         self.presenter = presenter
     }

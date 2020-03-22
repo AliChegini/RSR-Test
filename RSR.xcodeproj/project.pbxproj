@@ -146,12 +146,12 @@
 		7CA26C9F2410E976001D3237 /* Map */ = {
 			isa = PBXGroup;
 			children = (
-				7C965BE0242612A100597A09 /* CalloutView.swift */,
 				7CDF835824124E8F00301746 /* MapViewController.swift */,
 				7CDF835924124E8F00301746 /* MapInteractor.swift */,
 				7CDF835524124E8F00301746 /* MapPresenter.swift */,
 				7CDF835724124E8F00301746 /* MapModels.swift */,
 				7CDF835624124E8F00301746 /* MapRouter.swift */,
+				7C965BE0242612A100597A09 /* CalloutView.swift */,
 				7C965BDE2426100A00597A09 /* CalloutView.xib */,
 			);
 			path = Map;
