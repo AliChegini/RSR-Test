@@ -81,13 +81,12 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="center" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="pmu-zh-K3c">
-                                <rect key="frame" x="37" y="806" width="340" height="60"/>
+                                <rect key="frame" x="20" y="772" width="374" height="60"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleAspectFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="bnX-aB-2RN">
-                                        <rect key="frame" x="0.0" y="0.0" width="340" height="60"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="60"/>
                                         <color key="backgroundColor" red="0.0" green="0.57008767130000004" blue="0.74113047119999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="340" id="Gpc-hs-K5H"/>
                                             <constraint firstAttribute="height" constant="60" id="bu5-wS-xDk"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -98,10 +97,9 @@
                                         </connections>
                                     </button>
                                     <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="wordWrap" translatesAutoresizingMaskIntoConstraints="NO" id="uAz-EB-xdA">
-                                        <rect key="frame" x="0.0" y="0.0" width="340" height="60"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="374" height="60"/>
                                         <color key="backgroundColor" red="0.0" green="0.56584906580000005" blue="0.74926280980000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="340" id="5DA-wz-Qv9"/>
                                             <constraint firstAttribute="height" constant="60" id="g1C-UY-BHL"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -116,20 +114,46 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="340" id="AUp-Hx-8cw"/>
+                                    <constraint firstAttribute="trailing" secondItem="uAz-EB-xdA" secondAttribute="trailing" id="3DK-8N-VVn"/>
+                                    <constraint firstAttribute="width" constant="340" id="eqr-GI-6Xb"/>
+                                    <constraint firstAttribute="trailing" secondItem="bnX-aB-2RN" secondAttribute="trailing" id="lJ6-Xw-wTe"/>
                                 </constraints>
+                                <variation key="default">
+                                    <mask key="constraints">
+                                        <exclude reference="eqr-GI-6Xb"/>
+                                    </mask>
+                                </variation>
+                                <variation key="widthClass=regular">
+                                    <mask key="constraints">
+                                        <include reference="eqr-GI-6Xb"/>
+                                    </mask>
+                                </variation>
                             </stackView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="Hx8-oG-v7y" firstAttribute="top" secondItem="AE6-eR-jep" secondAttribute="top" id="03f-q0-GU2"/>
                             <constraint firstItem="AE6-eR-jep" firstAttribute="trailing" secondItem="Hx8-oG-v7y" secondAttribute="trailing" id="ErU-g7-61E"/>
+                            <constraint firstItem="AE6-eR-jep" firstAttribute="trailing" secondItem="pmu-zh-K3c" secondAttribute="trailing" constant="20" id="GGd-Fq-wcV"/>
+                            <constraint firstItem="pmu-zh-K3c" firstAttribute="leading" secondItem="AE6-eR-jep" secondAttribute="leading" constant="20" id="SKa-ov-ql5"/>
                             <constraint firstItem="Hx8-oG-v7y" firstAttribute="leading" secondItem="AE6-eR-jep" secondAttribute="leading" id="TJu-xk-cFT"/>
-                            <constraint firstItem="pmu-zh-K3c" firstAttribute="centerX" secondItem="2IW-B1-sFh" secondAttribute="centerX" id="Wz7-0s-xvT"/>
-                            <constraint firstAttribute="bottom" secondItem="pmu-zh-K3c" secondAttribute="bottom" constant="30" id="cVd-i0-vrh"/>
+                            <constraint firstItem="pmu-zh-K3c" firstAttribute="centerX" secondItem="2IW-B1-sFh" secondAttribute="centerX" id="a6A-l9-iQU"/>
+                            <constraint firstItem="AE6-eR-jep" firstAttribute="bottom" secondItem="pmu-zh-K3c" secondAttribute="bottom" constant="30" id="cVd-i0-vrh"/>
                             <constraint firstAttribute="bottom" secondItem="Hx8-oG-v7y" secondAttribute="bottom" id="j3g-tO-Qnt"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="AE6-eR-jep"/>
+                        <variation key="default">
+                            <mask key="constraints">
+                                <exclude reference="GGd-Fq-wcV"/>
+                                <exclude reference="SKa-ov-ql5"/>
+                            </mask>
+                        </variation>
+                        <variation key="widthClass=compact">
+                            <mask key="constraints">
+                                <include reference="GGd-Fq-wcV"/>
+                                <include reference="SKa-ov-ql5"/>
+                            </mask>
+                        </variation>
                     </view>
                     <navigationItem key="navigationItem" title="RSR Revalidatieservice" id="12f-hj-H3O">
                         <barButtonItem key="backBarButtonItem" title=" " id="gKQ-gp-plU"/>
@@ -161,10 +185,9 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="808"/>
                             </mapView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cCi-Ct-IQw">
-                                <rect key="frame" x="37" y="772" width="340" height="60"/>
+                                <rect key="frame" x="20" y="772" width="374" height="60"/>
                                 <color key="backgroundColor" red="0.0" green="0.57008767130000004" blue="0.74113047119999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="340" id="FqQ-N7-jIp"/>
                                     <constraint firstAttribute="height" constant="60" id="KMf-4C-oAF"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="20"/>
@@ -236,14 +259,24 @@
                                 <rect key="frame" x="0.0" y="696" width="414" height="200"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AYz-Un-HO2">
-                                        <rect key="frame" x="82" y="82" width="250" height="36"/>
+                                        <rect key="frame" x="127.5" y="82" width="159" height="36"/>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="250" id="qvp-fy-Z8s"/>
+                                            <constraint firstAttribute="width" constant="250" id="n6w-Ae-4Ps"/>
                                         </constraints>
                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="100" maxY="0.0"/>
                                         <state key="normal" title="0900-7788990" image="ic_phone">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <variation key="default">
+                                            <mask key="constraints">
+                                                <exclude reference="n6w-Ae-4Ps"/>
+                                            </mask>
+                                        </variation>
+                                        <variation key="widthClass=regular">
+                                            <mask key="constraints">
+                                                <include reference="n6w-Ae-4Ps"/>
+                                            </mask>
+                                        </variation>
                                         <connections>
                                             <action selector="iPadRingButtonAction:" destination="EYO-EX-c4A" eventType="touchUpInside" id="PwK-gB-fC1"/>
                                         </connections>
@@ -275,12 +308,12 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="boL-sA-V6u" firstAttribute="trailing" secondItem="cCi-Ct-IQw" secondAttribute="trailing" constant="20" id="2l1-B8-jVH"/>
                             <constraint firstItem="KMJ-LB-CHL" firstAttribute="centerY" secondItem="g1x-Fy-q65" secondAttribute="centerY" id="7Eg-if-3dk"/>
                             <constraint firstItem="KMJ-LB-CHL" firstAttribute="top" secondItem="JuM-pT-uGH" secondAttribute="bottom" id="7J8-nw-tBt"/>
                             <constraint firstItem="JuM-pT-uGH" firstAttribute="leading" secondItem="KMJ-LB-CHL" secondAttribute="leading" id="LLx-uX-Ret"/>
                             <constraint firstItem="KIt-TR-78P" firstAttribute="bottom" secondItem="g1x-Fy-q65" secondAttribute="bottom" id="MNQ-UU-NM0"/>
                             <constraint firstItem="5yc-h7-EDE" firstAttribute="leading" secondItem="boL-sA-V6u" secondAttribute="leading" id="Nsy-vf-UGG"/>
-                            <constraint firstItem="cCi-Ct-IQw" firstAttribute="centerX" secondItem="g1x-Fy-q65" secondAttribute="centerX" id="TyB-xj-EJP"/>
                             <constraint firstItem="KMJ-LB-CHL" firstAttribute="leading" secondItem="boL-sA-V6u" secondAttribute="leading" constant="30" id="XAz-8e-Hy7"/>
                             <constraint firstItem="boL-sA-V6u" firstAttribute="bottom" secondItem="cCi-Ct-IQw" secondAttribute="bottom" constant="30" id="YKC-S8-Pvz"/>
                             <constraint firstItem="5yc-h7-EDE" firstAttribute="top" secondItem="boL-sA-V6u" secondAttribute="top" id="a0O-pO-icA"/>
@@ -289,6 +322,7 @@
                             <constraint firstItem="boL-sA-V6u" firstAttribute="trailing" secondItem="KIt-TR-78P" secondAttribute="trailing" id="l7W-AC-LyH"/>
                             <constraint firstItem="KIt-TR-78P" firstAttribute="leading" secondItem="boL-sA-V6u" secondAttribute="leading" id="lol-og-Nee"/>
                             <constraint firstItem="boL-sA-V6u" firstAttribute="trailing" secondItem="KMJ-LB-CHL" secondAttribute="trailing" constant="30" id="tQm-qc-fB4"/>
+                            <constraint firstItem="cCi-Ct-IQw" firstAttribute="leading" secondItem="boL-sA-V6u" secondAttribute="leading" constant="20" id="xGu-S5-Ujn"/>
                             <constraint firstAttribute="bottom" secondItem="5yc-h7-EDE" secondAttribute="bottom" id="zql-T0-KSy"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="boL-sA-V6u"/>

@@ -58,7 +58,6 @@ class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
         super.viewDidLoad()
         roundTheButtons()
         mapView.delegate = self
-        //mapView.register(CustomAnnotation.self, forAnnotationViewWithReuseIdentifier: "UserLocation")
         
         askPermission()
         checkInternetConnection()
@@ -99,13 +98,12 @@ class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
     
     
     func displayCustomPin(viewModel: MapModels.LocateTheUser.ViewModel) {
-        self.viewModel = viewModel
         print("display custom pin is getting called")
-        
-        pin = CustomAnnotation(coordinate: viewModel.coordinate, title: viewModel.address)
+        self.viewModel = viewModel
         if let userLocation = mapView.annotations.first {
             mapView.selectAnnotation(userLocation, animated: true)
         }
+        pin = CustomAnnotation(coordinate: viewModel.coordinate, title: viewModel.address)
         
         // Zooming on annotation
         let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
