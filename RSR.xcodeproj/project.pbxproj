@@ -14,7 +14,6 @@
 		7C2B28CB2419094500879AA1 /* AboutInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C2B28C62419094500879AA1 /* AboutInteractor.swift */; };
 		7C965BDF2426100A00597A09 /* CalloutView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7C965BDE2426100A00597A09 /* CalloutView.xib */; };
 		7C965BE1242612A100597A09 /* CalloutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7C965BE0242612A100597A09 /* CalloutView.swift */; };
-		7C965BEB2426134000597A09 /* RSRKit.h in Headers */ = {isa = PBXBuildFile; fileRef = 7C965BE92426134000597A09 /* RSRKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7CA26C892410E673001D3237 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CA26C882410E673001D3237 /* AppDelegate.swift */; };
 		7CA26C902410E673001D3237 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7CA26C8E2410E673001D3237 /* Main.storyboard */; };
 		7CA26C922410E675001D3237 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7CA26C912410E675001D3237 /* Assets.xcassets */; };
@@ -41,8 +40,6 @@
 		7C965BDE2426100A00597A09 /* CalloutView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CalloutView.xib; sourceTree = "<group>"; };
 		7C965BE0242612A100597A09 /* CalloutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalloutView.swift; sourceTree = "<group>"; };
 		7C965BE72426134000597A09 /* RSRKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = RSRKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		7C965BE92426134000597A09 /* RSRKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RSRKit.h; sourceTree = "<group>"; };
-		7C965BEA2426134000597A09 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7CA26C852410E673001D3237 /* RSR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RSR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7CA26C882410E673001D3237 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7CA26C8F2410E673001D3237 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -80,20 +77,10 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		7C965BE82426134000597A09 /* RSRKit */ = {
-			isa = PBXGroup;
-			children = (
-				7C965BE92426134000597A09 /* RSRKit.h */,
-				7C965BEA2426134000597A09 /* Info.plist */,
-			);
-			path = RSRKit;
-			sourceTree = "<group>";
-		};
 		7CA26C7C2410E673001D3237 = {
 			isa = PBXGroup;
 			children = (
 				7CA26C872410E673001D3237 /* RSR */,
-				7C965BE82426134000597A09 /* RSRKit */,
 				7CA26C862410E673001D3237 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -176,7 +163,6 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7C965BEB2426134000597A09 /* RSRKit.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

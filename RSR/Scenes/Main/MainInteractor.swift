@@ -14,9 +14,9 @@
 import UIKit
 
 protocol MainBusinessLogic {
-    func checkUserConsent(request: MainModels.AskForUserConsent.Request)
-    func checkDeviceType(request: MainModels.ShowElementsForDevice.Request)
-    func openPrivacyLink(request: MainModels.OpenPrivacyLink.Request)
+    func checkUserConsentFor(request: MainModels.AskForUserConsent.Request)
+    func checkDeviceTypeFor(request: MainModels.ShowElementsForDevice.Request)
+    func openPrivacyLinkFor(request: MainModels.OpenPrivacyLink.Request)
 }
 
 protocol MainDataStore {
@@ -34,7 +34,7 @@ class MainInteractor: MainBusinessLogic, MainDataStore {
     }
     
     
-    func checkUserConsent(request: MainModels.AskForUserConsent.Request) {
+    func checkUserConsentFor(request: MainModels.AskForUserConsent.Request) {
         // check user defaults for privacy consent
         if !defaults.bool(forKey: "PrivacyConsent") {
             let response = MainModels.AskForUserConsent.Response()
@@ -43,7 +43,7 @@ class MainInteractor: MainBusinessLogic, MainDataStore {
     }
     
     
-    func checkDeviceType(request: MainModels.ShowElementsForDevice.Request) {
+    func checkDeviceTypeFor(request: MainModels.ShowElementsForDevice.Request) {
         if UIDevice.current.userInterfaceIdiom == .phone {
             let response = MainModels.ShowElementsForDevice.Response.init(deviceType: .phone)
             presenter?.presentElementsForDeviceType(response: response)
@@ -54,7 +54,7 @@ class MainInteractor: MainBusinessLogic, MainDataStore {
     }
     
     
-    func openPrivacyLink(request: MainModels.OpenPrivacyLink.Request) {
+    func openPrivacyLinkFor(request: MainModels.OpenPrivacyLink.Request) {
         // open link in browser
         if let url = URL(string: "https://www.rsr.nl/index.php?page=privacy-wetgeving") {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)

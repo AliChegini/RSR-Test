@@ -64,17 +64,17 @@ class MainViewController: UIViewController, MainDisplayable {
     
     fileprivate func checkDeviceType() {
         let request = MainModels.ShowElementsForDevice.Request()
-        interactor.checkDeviceType(request: request)
+        interactor.checkDeviceTypeFor(request: request)
     }
     
     fileprivate func checkUserConsent() {
         let request = MainModels.AskForUserConsent.Request()
-        interactor.checkUserConsent(request: request)
+        interactor.checkUserConsentFor(request: request)
     }
     
     fileprivate func openPrivacyLink() {
         let request = MainModels.OpenPrivacyLink.Request()
-        interactor.openPrivacyLink(request: request)
+        interactor.openPrivacyLinkFor(request: request)
     }
     
     

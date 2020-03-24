@@ -47,8 +47,7 @@ class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
     
     let callout = Bundle.main.loadNibNamed("CalloutView", owner: self, options: nil)?.first as! CalloutView
     
-
-    // viewModel
+    // viewModel to store user address and coordinate
     var viewModel: MapModels.LocateTheUser.ViewModel?
     
     
@@ -68,37 +67,36 @@ class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
     
     fileprivate func askPermission() {
         let request = MapModels.AskForPermission.Request()
-        interactor.askPermission(request: request)
+        interactor.askPermissionFor(request: request)
     }
     
     fileprivate func locateUser() {
         let request = MapModels.LocateTheUser.Request()
-        interactor.locateUser(request: request)
+        interactor.locateUserFor(request: request)
     }
     
     fileprivate func checkDeviceType() {
         let request = MapModels.ShowElementsForDevice.Request()
-        interactor.checkDeviceType(request: request)
+        interactor.checkDeviceTypeFor(request: request)
     }
     
     fileprivate func checkInternetConnection() {
         let request = MapModels.CheckInternetConnection.Request()
-        interactor.checkInternetConnection(request: request)
+        interactor.checkInternetConnectionFor(request: request)
     }
     
     fileprivate func openAppUrl() {
         let request = MapModels.OpenAppURL.Request()
-        interactor.openAppUrl(request: request)
+        interactor.openAppUrlFor(request: request)
     }
     
     fileprivate func callTheCenter() {
         let request = MapModels.CallTheCenter.Request()
-        interactor.callTheCenter(request: request)
+        interactor.callTheCenterFor(request: request)
     }
     
     
     func displayCustomPin(viewModel: MapModels.LocateTheUser.ViewModel) {
-        print("display custom pin is getting called")
         self.viewModel = viewModel
         if let userLocation = mapView.annotations.first {
             mapView.selectAnnotation(userLocation, animated: true)

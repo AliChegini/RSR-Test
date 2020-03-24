@@ -16,12 +16,12 @@ import CoreLocation
 import Network
 
 protocol MapBusinessLogic {
-    func askPermission(request: MapModels.AskForPermission.Request)
-    func locateUser(request: MapModels.LocateTheUser.Request)
-    func checkDeviceType(request: MapModels.ShowElementsForDevice.Request)
-    func checkInternetConnection(request: MapModels.CheckInternetConnection.Request)
-    func openAppUrl(request: MapModels.OpenAppURL.Request)
-    func callTheCenter(request: MapModels.CallTheCenter.Request)
+    func askPermissionFor(request: MapModels.AskForPermission.Request)
+    func locateUserFor(request: MapModels.LocateTheUser.Request)
+    func checkDeviceTypeFor(request: MapModels.ShowElementsForDevice.Request)
+    func checkInternetConnectionFor(request: MapModels.CheckInternetConnection.Request)
+    func openAppUrlFor(request: MapModels.OpenAppURL.Request)
+    func callTheCenterFor(request: MapModels.CallTheCenter.Request)
 }
 
 protocol MapDataStore {
@@ -47,7 +47,7 @@ class MapInteractor: NSObject, MapBusinessLogic, MapDataStore {
     }
     
     
-    func askPermission(request: MapModels.AskForPermission.Request) {
+    func askPermissionFor(request: MapModels.AskForPermission.Request) {
         let authorizationStatus = CLLocationManager.authorizationStatus()
         if authorizationStatus == .restricted || authorizationStatus == .denied {
             // if status is restricted or denied completes the VIP cycle to alert the user
@@ -61,12 +61,12 @@ class MapInteractor: NSObject, MapBusinessLogic, MapDataStore {
     }
     
     
-    func locateUser(request: MapModels.LocateTheUser.Request) {
+    func locateUserFor(request: MapModels.LocateTheUser.Request) {
         locationManager.requestLocation()
     }
     
     
-    func checkDeviceType(request: MapModels.ShowElementsForDevice.Request) {
+    func checkDeviceTypeFor(request: MapModels.ShowElementsForDevice.Request) {
         if UIDevice.current.userInterfaceIdiom == .phone {
             let response = MapModels.ShowElementsForDevice.Response.init(deviceType: .phone)
             presenter?.presentElementsForDeviceType(response: response)
@@ -77,7 +77,7 @@ class MapInteractor: NSObject, MapBusinessLogic, MapDataStore {
     }
     
     
-    func checkInternetConnection(request: MapModels.CheckInternetConnection.Request) {
+    func checkInternetConnectionFor(request: MapModels.CheckInternetConnection.Request) {
         // check for internet connection
         networkMonitor.pathUpdateHandler = { path in
             if path.status == .unsatisfied {
@@ -91,7 +91,7 @@ class MapInteractor: NSObject, MapBusinessLogic, MapDataStore {
     }
     
     
-    func openAppUrl(request: MapModels.OpenAppURL.Request) {
+    func openAppUrlFor(request: MapModels.OpenAppURL.Request) {
         if let url = URL(string: UIApplication.openSettingsURLString) {
             // open the app permission in Settings app
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
@@ -99,7 +99,7 @@ class MapInteractor: NSObject, MapBusinessLogic, MapDataStore {
     }
     
     
-    func callTheCenter(request: MapModels.CallTheCenter.Request) {
+    func callTheCenterFor(request: MapModels.CallTheCenter.Request) {
         let number = "+319007788990"
         if let url = URL(string: "tel://\(number)"), UIApplication.shared.canOpenURL(url) {
             UIApplication.shared.open(url)
@@ -116,7 +116,6 @@ extension MapInteractor: CLLocationManagerDelegate {
         guard let location = locations.last else {
             return
         }
-        print("location manager is updating location", location)
         
         // construct response object and call presenter's method
         let response = MapModels.LocateTheUser.Response(location: location)
