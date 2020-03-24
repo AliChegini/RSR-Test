@@ -28,11 +28,10 @@ class MapPresenter: MapPresentable {
         self.viewController = viewController
     }
     
-    
     func presentAddress(response: MapModels.LocateTheUser.Response) {
         // determining the address using the obtained location
         let geocoder = CLGeocoder()
-        geocoder.reverseGeocodeLocation(response.location) { (placemark, error) in
+        geocoder.reverseGeocodeLocation(response.location) { placemark, _ in
             if let placemark = placemark {
                 var stringAddress = ""
                 guard let info = placemark.first else {
@@ -58,12 +57,11 @@ class MapPresenter: MapPresentable {
         
                 let viewModel = MapModels.LocateTheUser.ViewModel(address: stringAddress,
                                                                   coordinate: response.location.coordinate)
-                self.viewController?.displayCustomPin(viewModel: viewModel)
+                self.viewController?.displayAddress(viewModel: viewModel)
             }
         }
     }
-    
-    
+        
     func presentElementsForDeviceType(response: MapModels.ShowElementsForDevice.Response) {
         let viewModel = MapModels.ShowElementsForDevice.ViewModel(deviceType: response.deviceType)
         viewController?.displayElementsForDeviceType(viewModel: viewModel)
@@ -78,5 +76,4 @@ class MapPresenter: MapPresentable {
         let viewModel = MapModels.CheckInternetConnection.ViewModel()
         viewController?.displayNetworkAlert(viewModel: viewModel)
     }
-    
 }

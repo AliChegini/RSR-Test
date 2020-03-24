@@ -30,12 +30,11 @@ class MainViewController: UIViewController, MainDisplayable {
     lazy var interactor: MainBusinessLogic = MainInteractor(presenter: MainPresenter(viewController: self))
     lazy var router = MainRouter(viewController: self)
 
-    @IBOutlet weak var showMapButton: UIButton!
-    @IBOutlet weak var iPadPrivacyButton: UIButton!
+    @IBOutlet private weak var showMapButton: UIButton!
+    @IBOutlet private weak var iPadPrivacyButton: UIButton!
     
     // defaults to save user consent on privacy policy
     let defaults = UserDefaults.standard
-    
     
     // MARK: View lifecycle
     
@@ -47,11 +46,9 @@ class MainViewController: UIViewController, MainDisplayable {
         checkUserConsent()
     }
     
-    
     func displayPrivacyAlert(viewModel: MainModels.AskForUserConsent.ViewModel) {
         createAndShowAlert()
     }
-    
     
     func displayElementsForDeviceType(viewModel: MainModels.ShowElementsForDevice.ViewModel) {
         if viewModel.deviceType == .pad {
@@ -60,7 +57,6 @@ class MainViewController: UIViewController, MainDisplayable {
             iPadPrivacyButton.isHidden = false
         }
     }
-    
     
     fileprivate func checkDeviceType() {
         let request = MainModels.ShowElementsForDevice.Request()
@@ -77,15 +73,13 @@ class MainViewController: UIViewController, MainDisplayable {
         interactor.openPrivacyLinkFor(request: request)
     }
     
-    
-    @IBAction func policyButtonAction(_ sender: UIBarButtonItem) {
+    @IBAction private func policyButtonAction(_ sender: UIBarButtonItem) {
         //createAndShowAlert()
     }
     
-    @IBAction func iPadPrivacyButtonAction(_ sender: UIButton) {
+    @IBAction private func iPadPrivacyButtonAction(_ sender: UIButton) {
         //createAndShowAlert()
     }
-    
     
     // MARK: Boiler plate code
     
@@ -99,21 +93,22 @@ class MainViewController: UIViewController, MainDisplayable {
 //    }
 }
 
-
-
 extension MainViewController {
     /**
     Creates  and present privacy alert to user
     */
     fileprivate func createAndShowAlert() {
-        let alert = UIAlertController(title: nil, message: "Om gebruik te maken van deze app dient u het privacybeleid te accepteren", preferredStyle: .alert)
+        let alert = UIAlertController(title: nil,
+                                      message:
+            "Om gebruik te maken van deze app dient u het privacybeleid te accepteren",
+                                      preferredStyle: .alert)
         
-        alert.addAction(UIAlertAction(title: "Accepteren", style: .default, handler: { (action) in
+        alert.addAction(UIAlertAction(title: "Accepteren", style: .default, handler: { _ in
             // save consent in user defaults
             self.defaults.set(true, forKey: "PrivacyConsent")
         }))
         
-        alert.addAction(UIAlertAction(title: "Ga naar privacybeleid", style: .default, handler: { (action) in
+        alert.addAction(UIAlertAction(title: "Ga naar privacybeleid", style: .default, handler: { _ in
             self.openPrivacyLink()
         }))
         self.present(alert, animated: true, completion: nil)

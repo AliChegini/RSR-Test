@@ -17,22 +17,18 @@ enum MainModels {
     /// Use case to ask user consent on privacy policy
     enum AskForUserConsent {
         struct Request {
-            
         }
         
         struct Response {
-            
         }
         
         struct ViewModel {
-            
         }
     }
     
     /// Use case to show the proper UI elements based on device type
     enum ShowElementsForDevice {
         struct Request {
-            
         }
         
         struct Response {
@@ -47,7 +43,6 @@ enum MainModels {
     /// Use case to open link for privacy policy
     enum OpenPrivacyLink {
         struct Request {
-            
         }
     }
 }

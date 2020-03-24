@@ -17,25 +17,18 @@ protocol AboutRoutable {
 //    func doSomething()
 }
 
-
 class AboutRouter: AboutRoutable {
-    
     weak var viewController: UIViewController?
     
     init(viewController: UIViewController) {
         self.viewController = viewController
     }
-    
-    
     // All the routing and data passing logic will be here
     func doSomething() {
         // routing to next viewContoller
         // let vc = destinationVC
-        
         // passing data to other contoller
         //vc.router.dataStore = input
-        
         //viewContoller.present(vc)
     }
-    
 }

@@ -28,21 +28,16 @@ class AboutInteractor: AboutBusinessLogic, AboutDataStore {
     init(presenter: AboutPresentable) {
         self.presenter = presenter
     }
-    
-    
     func checkDeviceType(request: AboutModels.ShowElementsForDevice.Request) {
         if UIDevice.current.userInterfaceIdiom == .phone {
-            let response = AboutModels.ShowElementsForDevice.Response.init(deviceType: .phone)
+            let response = AboutModels.ShowElementsForDevice.Response(deviceType: .phone)
             presenter?.presentElementsForDeviceType(response: response)
         } else if UIDevice.current.userInterfaceIdiom == .pad {
-            let response = AboutModels.ShowElementsForDevice.Response.init(deviceType: .pad)
+            let response = AboutModels.ShowElementsForDevice.Response(deviceType: .pad)
             presenter?.presentElementsForDeviceType(response: response)
         }
     }
-    
-    
   // MARK: Boiler plate code 
-  
 //    func doSomething(request: AboutModels.Request) {
 //        worker = AboutWorker()
 //        worker?.doSomeWork()

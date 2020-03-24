@@ -27,8 +27,7 @@ class AboutViewController: UIViewController, AboutDisplayable {
     lazy var interactor: AboutBusinessLogic = AboutInteractor(presenter: AboutPresenter(viewController: self))
     //lazy var router: AboutRoutable
         
-    @IBOutlet weak var logoImageView: UIImageView!
-    
+    @IBOutlet private weak var logoImageView: UIImageView!
     
     // MARK: View lifecycle
     
@@ -42,7 +41,6 @@ class AboutViewController: UIViewController, AboutDisplayable {
         let request = AboutModels.ShowElementsForDevice.Request()
         interactor.checkDeviceType(request: request)
     }
-    
     
     func displayElementsForDeviceType(viewModel: AboutModels.ShowElementsForDevice.ViewModel) {
         if viewModel.deviceType == .pad {

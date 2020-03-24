@@ -17,14 +17,12 @@ protocol MainRoutable {
 //    func doSomething()
 }
 
-
 class MainRouter: MainRoutable {
     weak var viewController: UIViewController?
     
     init(viewController: UIViewController) {
         self.viewController = viewController
     }
-    
     
     // All the routing and data passing logic will be here
     func doSomething() {
@@ -36,5 +34,4 @@ class MainRouter: MainRoutable {
         
         //viewContoller.present(vc)
     }
-    
 }

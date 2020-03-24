@@ -25,18 +25,15 @@ class MainPresenter: MainPresentable {
         self.viewController = viewController
     }
     
-    
     func presentPrivacyAlert(response: MainModels.AskForUserConsent.Response) {
         let viewModel = MainModels.AskForUserConsent.ViewModel()
         viewController?.displayPrivacyAlert(viewModel: viewModel)
     }
     
-    
     func presentElementsForDeviceType(response: MainModels.ShowElementsForDevice.Response) {
         let viewModel = MainModels.ShowElementsForDevice.ViewModel(deviceType: response.deviceType)
         viewController?.displayElementsForDeviceType(viewModel: viewModel)
     }
-    
     
   // MARK: Boiler plate code
   

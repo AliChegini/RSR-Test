@@ -30,22 +30,18 @@ protocol MapDataStore {
 
 class MapInteractor: NSObject, MapBusinessLogic, MapDataStore {
     private let locationManager = CLLocationManager()
-    
     private var presenter: MapPresentable?
     
-    // two vars for monitoring network status
+    // variables for monitoring network status
     private var networkMonitor = NWPathMonitor()
     private var queue = DispatchQueue(label: "NetworkMonitor")
-    
 
     init(presenter: MapPresentable) {
         super.init()
         locationManager.delegate = self
         locationManager.desiredAccuracy = kCLLocationAccuracyHundredMeters
-        
         self.presenter = presenter
     }
-    
     
     func askPermissionFor(request: MapModels.AskForPermission.Request) {
         let authorizationStatus = CLLocationManager.authorizationStatus()
@@ -60,23 +56,20 @@ class MapInteractor: NSObject, MapBusinessLogic, MapDataStore {
         }
     }
     
-    
     func locateUserFor(request: MapModels.LocateTheUser.Request) {
         locationManager.requestLocation()
     }
     
-    
     func checkDeviceTypeFor(request: MapModels.ShowElementsForDevice.Request) {
         if UIDevice.current.userInterfaceIdiom == .phone {
-            let response = MapModels.ShowElementsForDevice.Response.init(deviceType: .phone)
+            let response = MapModels.ShowElementsForDevice.Response(deviceType: .phone)
             presenter?.presentElementsForDeviceType(response: response)
         } else if UIDevice.current.userInterfaceIdiom == .pad {
-            let response = MapModels.ShowElementsForDevice.Response.init(deviceType: .pad)
+            let response = MapModels.ShowElementsForDevice.Response(deviceType: .pad)
             presenter?.presentElementsForDeviceType(response: response)
         }
     }
-    
-    
+
     func checkInternetConnectionFor(request: MapModels.CheckInternetConnection.Request) {
         // check for internet connection
         networkMonitor.pathUpdateHandler = { path in
@@ -86,10 +79,8 @@ class MapInteractor: NSObject, MapBusinessLogic, MapDataStore {
                 return
             }
         }
-        
         networkMonitor.start(queue: queue)
     }
-    
     
     func openAppUrlFor(request: MapModels.OpenAppURL.Request) {
         if let url = URL(string: UIApplication.openSettingsURLString) {
@@ -97,7 +88,6 @@ class MapInteractor: NSObject, MapBusinessLogic, MapDataStore {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
-    
     
     func callTheCenterFor(request: MapModels.CallTheCenter.Request) {
         let number = "+319007788990"
@@ -107,21 +97,16 @@ class MapInteractor: NSObject, MapBusinessLogic, MapDataStore {
     }
 }
 
-
 extension MapInteractor: CLLocationManagerDelegate {
     // MARK: CLLocationManagerDelegate methods
-    
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
         guard let location = locations.last else {
             return
         }
-        
         // construct response object and call presenter's method
         let response = MapModels.LocateTheUser.Response(location: location)
         self.presenter?.presentAddress(response: response)
     }
-    
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         locationManager.requestLocation()

@@ -29,9 +29,12 @@
 		7CDF835D24124E8F00301746 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDF835824124E8F00301746 /* MapViewController.swift */; };
 		7CDF835E24124E8F00301746 /* MapInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDF835924124E8F00301746 /* MapInteractor.swift */; };
 		7CDF83642412823800301746 /* AppModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7CDF83632412823800301746 /* AppModels.swift */; };
+		C1E82E271AB2824A682AB0D4 /* Pods_RSR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F67F3A3A9804F7284A209B14 /* Pods_RSR.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		61F60CE564EC5AB1D390D140 /* Pods-RSR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSR.release.xcconfig"; path = "Target Support Files/Pods-RSR/Pods-RSR.release.xcconfig"; sourceTree = "<group>"; };
+		6AFF9CD80213E4C6A9679A32 /* Pods-RSR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RSR.debug.xcconfig"; path = "Target Support Files/Pods-RSR/Pods-RSR.debug.xcconfig"; sourceTree = "<group>"; };
 		7C2B28C22419094500879AA1 /* AboutPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutPresenter.swift; sourceTree = "<group>"; };
 		7C2B28C32419094500879AA1 /* AboutRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutRouter.swift; sourceTree = "<group>"; };
 		7C2B28C42419094500879AA1 /* AboutModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutModels.swift; sourceTree = "<group>"; };
@@ -57,6 +60,7 @@
 		7CDF835824124E8F00301746 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		7CDF835924124E8F00301746 /* MapInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapInteractor.swift; sourceTree = "<group>"; };
 		7CDF83632412823800301746 /* AppModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppModels.swift; sourceTree = "<group>"; };
+		F67F3A3A9804F7284A209B14 /* Pods_RSR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RSR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,17 +75,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C1E82E271AB2824A682AB0D4 /* Pods_RSR.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3C7143DFA18F40364DFD7120 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F67F3A3A9804F7284A209B14 /* Pods_RSR.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7CA26C7C2410E673001D3237 = {
 			isa = PBXGroup;
 			children = (
 				7CA26C872410E673001D3237 /* RSR */,
 				7CA26C862410E673001D3237 /* Products */,
+				D3D40B5B4EBAD0DBB3FFB7A0 /* Pods */,
+				3C7143DFA18F40364DFD7120 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -156,6 +171,15 @@
 			path = About;
 			sourceTree = "<group>";
 		};
+		D3D40B5B4EBAD0DBB3FFB7A0 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				6AFF9CD80213E4C6A9679A32 /* Pods-RSR.debug.xcconfig */,
+				61F60CE564EC5AB1D390D140 /* Pods-RSR.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXHeadersBuildPhase section */
@@ -191,9 +215,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7CA26C992410E675001D3237 /* Build configuration list for PBXNativeTarget "RSR" */;
 			buildPhases = (
+				7C9C1A836AC294A801257D90 /* [CP] Check Pods Manifest.lock */,
 				7CA26C812410E673001D3237 /* Sources */,
 				7CA26C822410E673001D3237 /* Frameworks */,
 				7CA26C832410E673001D3237 /* Resources */,
+				7C600833242A117E000F614D /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -261,6 +287,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		7C600833242A117E000F614D /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/SwiftLint/swiftlint\"\n\n";
+		};
+		7C9C1A836AC294A801257D90 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-RSR-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7C965BE32426134000597A09 /* Sources */ = {
@@ -487,6 +555,7 @@
 		};
 		7CA26C9A2410E675001D3237 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6AFF9CD80213E4C6A9679A32 /* Pods-RSR.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -506,6 +575,7 @@
 		};
 		7CA26C9B2410E675001D3237 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 61F60CE564EC5AB1D390D140 /* Pods-RSR.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;

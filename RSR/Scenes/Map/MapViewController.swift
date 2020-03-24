@@ -15,55 +15,47 @@ import UIKit
 import MapKit
 
 protocol MapDisplayable: class {
-    func displayCustomPin(viewModel: MapModels.LocateTheUser.ViewModel)
+    func displayAddress(viewModel: MapModels.LocateTheUser.ViewModel)
     func displayElementsForDeviceType(viewModel: MapModels.ShowElementsForDevice.ViewModel)
     func displayPermissionAlert(viewModel: MapModels.AskForPermission.ViewModel)
     func displayNetworkAlert(viewModel: MapModels.CheckInternetConnection.ViewModel)
 }
 
 class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
-    private lazy var interactor: MapBusinessLogic = MapInteractor(presenter: MapPresenter(viewController: self))
+    private lazy var interactor = MapInteractor(presenter: MapPresenter(viewController: self))
     private lazy var router = MapRouter(viewController: self)
     
-    @IBOutlet weak var mapView: MKMapView!
+    @IBOutlet private weak var mapView: MKMapView!
     
     // ring button at the bottom of scene
-    @IBOutlet weak var ringButton: UIButton!
+    @IBOutlet private weak var ringButton: UIButton!
     
     // cancel button at the top left corner of middle box view
-    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet private weak var cancelButton: UIButton!
     
     // middle yellow box containing labels and button
-    @IBOutlet weak var middleBoxView: UIView!
+    @IBOutlet private weak var middleBoxView: UIView!
     
     // footerbox for ipad at the bottomof the scene
-    @IBOutlet weak var iPadFooterBoxView: UIView!
+    @IBOutlet private weak var iPadFooterBoxView: UIView!
     
     // ring button inside the middle box
-    @IBOutlet weak var finalRingButton: UIButton!
+    @IBOutlet private weak var finalRingButton: UIButton!
     
-    var pin: CustomAnnotation!
-    
-    
+    // swiftlint:disable force_cast
     let callout = Bundle.main.loadNibNamed("CalloutView", owner: self, options: nil)?.first as! CalloutView
     
-    // viewModel to store user address and coordinate
-    var viewModel: MapModels.LocateTheUser.ViewModel?
-    
-    
     // MARK: View lifecycle
-    
     override func viewDidLoad() {
+        print("viewDidLoad is getting called ")
         super.viewDidLoad()
-        roundTheButtons()
         mapView.delegate = self
-        
+        roundTheButtons()
+        checkDeviceType()
         askPermission()
         checkInternetConnection()
         locateUser()
-        checkDeviceType()
     }
-    
     
     fileprivate func askPermission() {
         let request = MapModels.AskForPermission.Request()
@@ -95,20 +87,15 @@ class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
         interactor.callTheCenterFor(request: request)
     }
     
-    
-    func displayCustomPin(viewModel: MapModels.LocateTheUser.ViewModel) {
-        self.viewModel = viewModel
-        if let userLocation = mapView.annotations.first {
-            mapView.selectAnnotation(userLocation, animated: true)
-        }
-        pin = CustomAnnotation(coordinate: viewModel.coordinate, title: viewModel.address)
+    func displayAddress(viewModel: MapModels.LocateTheUser.ViewModel) {
+        _ = CustomAnnotation(coordinate: viewModel.coordinate, title: viewModel.address)
+        callout.addressLabel.text = viewModel.address
         
         // Zooming on annotation
         let span = MKCoordinateSpan(latitudeDelta: 0.01, longitudeDelta: 0.01)
         let region = MKCoordinateRegion(center: viewModel.coordinate, span: span)
-        mapView.setRegion(region, animated: true)
+        self.mapView.setRegion(region, animated: true)
     }
-    
     
     func displayElementsForDeviceType(viewModel: MapModels.ShowElementsForDevice.ViewModel) {
         if viewModel.deviceType == .pad {
@@ -116,37 +103,32 @@ class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
             iPadFooterBoxView.isHidden = false
         }
     }
-    
-    
+        
     func displayPermissionAlert(viewModel: MapModels.AskForPermission.ViewModel) {
         createAndShowPermissionAlert()
     }
-    
     
     func displayNetworkAlert(viewModel: MapModels.CheckInternetConnection.ViewModel) {
         createAndShowNetworkAlert()
     }
     
-    
-    @IBAction func ringButtonAction(_ sender: UIButton) {
+    @IBAction private func ringButtonAction(_ sender: UIButton) {
         hideCalloutAndRingButton()
         showMiddleBoxAndCancelButton()
     }
         
-    @IBAction func cancelButtonAction(_ sender: UIButton) {
+    @IBAction private func cancelButtonAction(_ sender: UIButton) {
         showCalloutAndRingButton()
         hideMiddleBoxAndCancelButton()
     }
     
-    @IBAction func finalRingButtonAction(_ sender: UIButton) {
+    @IBAction private func finalRingButtonAction(_ sender: UIButton) {
         callTheCenter()
     }
     
-    
-    @IBAction func iPadRingButtonAction(_ sender: UIButton) {
+    @IBAction private func iPadRingButtonAction(_ sender: UIButton) {
         callTheCenter()
     }
-    
     
     /// Hides callout and button at the bottom of the page
     fileprivate func hideCalloutAndRingButton() {
@@ -176,7 +158,6 @@ class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
         })
     }
     
-    
     /// Shows middle box and cancel button
     fileprivate func showMiddleBoxAndCancelButton() {
         UIView.transition(with: middleBoxView,
@@ -193,7 +174,6 @@ class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
         })
     }
     
-
     // Methods for Custom annotations
     //
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
@@ -207,28 +187,32 @@ class MapViewController: UIViewController, MapDisplayable, MKMapViewDelegate {
         }
 
         annotationView?.image = UIImage(named: "marker")
+        
         return annotationView
     }
     
-    
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        if let address = self.viewModel?.address {
-            callout.addressLabel.text = address
-        }
         callout.setup(view: view)
     }
+    
+    func mapView(_ mapView: MKMapView, didAdd views: [MKAnnotationView]) {
+        if let annotation = views.first?.annotation {
+            mapView.selectAnnotation(annotation, animated: true)
+        }
+    }
 }
-
-
 
 extension MapViewController {
     /**
     Creates  and present  alert to ask for location permission
     */
     fileprivate func createAndShowPermissionAlert() {
-        let alert = UIAlertController(title: "Location Permission", message: "Please authorize RSR to find your location while using the app.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Location Permission",
+                                      message:
+            "Please authorize RSR to find your location while using the app.",
+                                      preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Close", style: .default, handler: nil))
-        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { (action) in
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: { _ in
             alert.dismiss(animated: false) {
                 self.openAppUrl()
             }
@@ -240,9 +224,12 @@ extension MapViewController {
     Creates  and present  alert to alert user about connection issue
     */
     func createAndShowNetworkAlert() {
-        let alert = UIAlertController(title: "Internet Error", message: "You are not connected to internet. Please check your connection and try again.", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Internet Error",
+                                      message:
+            "You are not connected to internet. Please check your connection and try again.",
+                                      preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
-        alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { (action) in
+        alert.addAction(UIAlertAction(title: "Retry", style: .default, handler: { _ in
             self.navigationController?.popViewController(animated: true)
         }))
         

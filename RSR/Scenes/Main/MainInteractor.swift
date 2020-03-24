@@ -33,7 +33,6 @@ class MainInteractor: MainBusinessLogic, MainDataStore {
         self.presenter = presenter
     }
     
-    
     func checkUserConsentFor(request: MainModels.AskForUserConsent.Request) {
         // check user defaults for privacy consent
         if !defaults.bool(forKey: "PrivacyConsent") {
@@ -42,17 +41,15 @@ class MainInteractor: MainBusinessLogic, MainDataStore {
         }
     }
     
-    
     func checkDeviceTypeFor(request: MainModels.ShowElementsForDevice.Request) {
         if UIDevice.current.userInterfaceIdiom == .phone {
-            let response = MainModels.ShowElementsForDevice.Response.init(deviceType: .phone)
+            let response = MainModels.ShowElementsForDevice.Response(deviceType: .phone)
             presenter?.presentElementsForDeviceType(response: response)
         } else if UIDevice.current.userInterfaceIdiom == .pad {
-            let response = MainModels.ShowElementsForDevice.Response.init(deviceType: .pad)
+            let response = MainModels.ShowElementsForDevice.Response(deviceType: .pad)
             presenter?.presentElementsForDeviceType(response: response)
         }
     }
-    
     
     func openPrivacyLinkFor(request: MainModels.OpenPrivacyLink.Request) {
         // open link in browser
@@ -60,7 +57,6 @@ class MainInteractor: MainBusinessLogic, MainDataStore {
             UIApplication.shared.open(url, options: [:], completionHandler: nil)
         }
     }
-    
     
   // MARK: Boiler plate code
   

@@ -14,19 +14,17 @@
 import UIKit
 
 enum AboutModels {
-    
-   /// Use case to show the proper UI elements based on device type
-   enum ShowElementsForDevice {
-       struct Request {
-           
-       }
-       
-       struct Response {
-           let deviceType: DeviceType
-       }
-       
-       struct ViewModel {
-           let deviceType: DeviceType
-       }
-   }
+    /// Use case to show the proper UI elements based on device type
+    enum ShowElementsForDevice {
+        struct Request {
+        }
+        
+        struct Response {
+            let deviceType: DeviceType
+        }
+        
+        struct ViewModel {
+            let deviceType: DeviceType
+        }
+    }
 }

@@ -10,7 +10,7 @@ import UIKit
 import MapKit
 
 class CalloutView: UIView {
-
+    // swiftlint:disable private_outlet
     @IBOutlet weak var addressLabel: UILabel!
     
     func setup(view: MKAnnotationView) {

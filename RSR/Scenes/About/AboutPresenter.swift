@@ -25,7 +25,6 @@ class AboutPresenter: AboutPresentable {
         self.viewController = viewController
     }
     
-    
     func presentElementsForDeviceType(response: AboutModels.ShowElementsForDevice.Response) {
         let viewModel = AboutModels.ShowElementsForDevice.ViewModel(deviceType: response.deviceType)
         viewController?.displayElementsForDeviceType(viewModel: viewModel)

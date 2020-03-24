@@ -18,22 +18,18 @@ enum MapModels {
     /// Use case  to AskForPermission
     enum AskForPermission {
         struct Request {
-            
         }
         
         struct Response {
-            
         }
         
         struct ViewModel {
-            
         }
     }
     
     /// Use case to LocateTheUser
     enum LocateTheUser {
         struct Request {
-            
         }
         
         struct Response {
@@ -49,7 +45,6 @@ enum MapModels {
     /// Use case to show the proper UI elements based on device type
     enum ShowElementsForDevice {
         struct Request {
-            
         }
         
         struct Response {
@@ -64,29 +59,24 @@ enum MapModels {
     /// Use case  to check internet connection
     enum CheckInternetConnection {
         struct Request {
-            
         }
         
         struct Response {
-            
         }
         
         struct ViewModel {
-            
         }
     }
     
     /// Use case to open app URL
     enum OpenAppURL {
         struct Request {
-            
         }
     }
     
     /// Use case to initiate a phone call
     enum CallTheCenter {
         struct Request {
-            
         }
     }
 }

@@ -17,7 +17,6 @@ protocol MapRoutable {
 //    func doSomething()
 }
 
-
 class MapRouter: MapRoutable {
     
     weak var viewController: UIViewController?
@@ -25,7 +24,6 @@ class MapRouter: MapRoutable {
     init(viewController: UIViewController) {
         self.viewController = viewController
     }
-    
     
     // All the routing and data passing logic will be here
     func doSomething() {
@@ -37,5 +35,4 @@ class MapRouter: MapRoutable {
         
         //viewContoller.present(vc)
     }
-    
 }

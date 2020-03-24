@@ -9,11 +9,9 @@
 import UIKit
 import MapKit
 
-
 // Class to model custom annotation object
 
 class CustomAnnotation: NSObject, MKAnnotation {
-    
     @objc dynamic var coordinate: CLLocationCoordinate2D
     var title: String?
     
@@ -21,9 +19,7 @@ class CustomAnnotation: NSObject, MKAnnotation {
         self.coordinate = coordinate
         self.title = title
     }
-    
 }
-
 
 enum DeviceType {
     case phone
